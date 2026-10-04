@@ -17,9 +17,12 @@ public:
     explicit UMAMS(QWidget *parent = nullptr);
     ~UMAMS() override;
 
+private slots:
+    void onStudentLoginClicked();
+    void onAdminLoginClicked();
+
 private:
     Ui::UMAMS *ui;
-
-    void onLoginClicked();
 };
+
 #endif // UMAMS_H

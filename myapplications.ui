@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MyApplications</class>
+ <widget class="QDialog" name="MyApplications">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>671</width>
+    <height>449</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <widget class="QLabel" name="lblTitle">
+   <property name="geometry">
+    <rect>
+     <x>270</x>
+     <y>10</y>
+     <width>161</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>My Medical Applications</string>
+   </property>
+  </widget>
+  <widget class="QTableWidget" name="tblApplications">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>110</y>
+     <width>601</width>
+     <height>192</height>
+    </rect>
+   </property>
+   <column>
+    <property name="text">
+     <string>Application ID</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Medical ID</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>From</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>To</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Status</string>
+    </property>
+   </column>
+  </widget>
+  <widget class="QPushButton" name="btnViewDetails">
+   <property name="geometry">
+    <rect>
+     <x>310</x>
+     <y>380</y>
+     <width>90</width>
+     <height>29</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>View Details</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btnBack">
+   <property name="geometry">
+    <rect>
+     <x>480</x>
+     <y>380</y>
+     <width>131</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Back to Dashboard</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

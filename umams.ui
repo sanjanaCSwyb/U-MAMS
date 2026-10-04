@@ -46,72 +46,43 @@
      <string>University Medical Absense Management System</string>
     </property>
    </widget>
-   <widget class="QLabel" name="lblPassword">
+   <widget class="QPushButton" name="btnStudentLogin">
     <property name="geometry">
      <rect>
-      <x>50</x>
-      <y>310</y>
-      <width>81</width>
+      <x>190</x>
+      <y>240</y>
+      <width>421</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>STUDENT LOGIN</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnAdminLogin">
+    <property name="geometry">
+     <rect>
+      <x>190</x>
+      <y>380</y>
+      <width>421</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>ADMIN LOGIN</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblDepartment">
+    <property name="geometry">
+     <rect>
+      <x>280</x>
+      <y>120</y>
+      <width>241</width>
       <height>31</height>
      </rect>
     </property>
     <property name="text">
-     <string>Password :</string>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="txtPassword">
-    <property name="geometry">
-     <rect>
-      <x>120</x>
-      <y>350</y>
-      <width>371</width>
-      <height>28</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="echoMode">
-     <enum>QLineEdit::EchoMode::Password</enum>
-    </property>
-   </widget>
-   <widget class="QLabel" name="lblUsername">
-    <property name="geometry">
-     <rect>
-      <x>50</x>
-      <y>220</y>
-      <width>81</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>User Name :</string>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="txtUsername">
-    <property name="geometry">
-     <rect>
-      <x>120</x>
-      <y>260</y>
-      <width>371</width>
-      <height>28</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="btnLogin">
-    <property name="geometry">
-     <rect>
-      <x>340</x>
-      <y>490</y>
-      <width>90</width>
-      <height>29</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Login</string>
+     <string>Material and Nano Science Department</string>
     </property>
    </widget>
   </widget>

@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Dialog</class>
+ <widget class="QDialog" name="Dialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>839</width>
+    <height>468</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <widget class="QLabel" name="lblTitle">
+   <property name="geometry">
+    <rect>
+     <x>120</x>
+     <y>10</y>
+     <width>191</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>U-MAMS - Medical Applications</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="txtSearchStudentID">
+   <property name="geometry">
+    <rect>
+     <x>150</x>
+     <y>70</y>
+     <width>113</width>
+     <height>28</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lblSearchStudentID">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>70</y>
+     <width>121</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Enter Student ID :</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btnSearch">
+   <property name="geometry">
+    <rect>
+     <x>270</x>
+     <y>70</y>
+     <width>90</width>
+     <height>29</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>SEARCH</string>
+   </property>
+  </widget>
+  <widget class="QTableWidget" name="tblApplications">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>180</y>
+     <width>741</width>
+     <height>181</height>
+    </rect>
+   </property>
+   <property name="columnCount">
+    <number>6</number>
+   </property>
+   <column>
+    <property name="text">
+     <string>Application ID</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Student ID</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Student Name</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>From</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>To</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Status</string>
+    </property>
+   </column>
+  </widget>
+  <widget class="QComboBox" name="cmbStatus">
+   <property name="geometry">
+    <rect>
+     <x>120</x>
+     <y>110</y>
+     <width>82</width>
+     <height>28</height>
+    </rect>
+   </property>
+   <item>
+    <property name="text">
+     <string>All</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Pending</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Approved</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Declined</string>
+    </property>
+   </item>
+  </widget>
+  <widget class="QLabel" name="lblStatus">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>110</y>
+     <width>101</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Status    :</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btnBack">
+   <property name="geometry">
+    <rect>
+     <x>320</x>
+     <y>420</y>
+     <width>151</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Back to Dashboard</string>
+   </property>
+  </widget>
+  <widget class="QWidget" name="layoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>380</y>
+     <width>274</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout">
+    <item>
+     <widget class="QPushButton" name="btnDecline">
+      <property name="text">
+       <string>Decline</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="btnViewDetails">
+      <property name="text">
+       <string>View Details</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="btnApprove">
+      <property name="text">
+       <string>Approve</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

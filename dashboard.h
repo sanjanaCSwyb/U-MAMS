@@ -16,7 +16,13 @@ public:
     ~Dashboard();
 
 private slots:
-    void onMedicalApplicationClicked();
+    void onMedicalApplicationsClicked();
+    void onViewApplicationsClicked();
+    void onApproveDeclineClicked();
+    void onNotificationsClicked();
+    void onReportsClicked();
+    void onChangePasswordClicked();
+    void onLogoutClicked();
 
 private:
     Ui::Dashboard *ui;

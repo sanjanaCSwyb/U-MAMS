@@ -1,7 +1,8 @@
 #include "umams.h"
 #include "ui_umams.h"
+#include "studentlogin.h"
 #include "dashboard.h"
-#include <QMessageBox>
+#include "adminlogin.h"
 
 UMAMS::UMAMS(QWidget *parent)
     : QMainWindow(parent)
@@ -9,8 +10,17 @@ UMAMS::UMAMS(QWidget *parent)
 {
     ui->setupUi(this);
 
-    connect(ui->btnLogin, &QPushButton::clicked,
-            this, &UMAMS::onLoginClicked);
+    // Student Login
+    connect(ui->btnStudentLogin,
+            &QPushButton::clicked,
+            this,
+            &UMAMS::onStudentLoginClicked);
+
+    // Admin Login
+    connect(ui->btnAdminLogin,
+            &QPushButton::clicked,
+            this,
+            &UMAMS::onAdminLoginClicked);
 }
 
 UMAMS::~UMAMS()
@@ -18,28 +28,25 @@ UMAMS::~UMAMS()
     delete ui;
 }
 
-void UMAMS::onLoginClicked()
+
+// ==========================================
+// STUDENT LOGIN
+// ==========================================
+
+void UMAMS::onStudentLoginClicked()
 {
-    QString username = ui->txtUsername->text();
-    QString password = ui->txtPassword->text();
+    StudentLogin login(this);
 
-    if (username == "admin" && password == "1234")
-    {
-        // Create Dashboard window
-        Dashboard *dashboard = new Dashboard(this);
+    login.exec();
+}
 
-        // Show Dashboard
-        dashboard->show();
 
-        // Hide Login window
-        this->hide();
-    }
-    else
-    {
-        QMessageBox::warning(
-            this,
-            "Login Failed",
-            "Invalid username or password."
-            );
-    }
+// ==========================================
+// ADMIN LOGIN
+// ==========================================
+
+void UMAMS::onAdminLoginClicked()
+{
+    AdminLogin login(this);
+    login.exec();
 }

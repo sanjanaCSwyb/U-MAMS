@@ -1,4 +1,52 @@
+# =========================
+# Qt Creator
+# =========================
+.qtcreator/
+*.pro.user
+*.pro.user.*
+.qmake.stash
+
+# =========================
+# CMake / Build files
+# =========================
 build/
+build-*/
 cmake-build-*/
-*.user
-*.user.*
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+*.o
+*.obj
+*.exe
+*.dll
+*.a
+*.lib
+
+# =========================
+# Qt generated files
+# =========================
+moc_*.cpp
+moc_*.h
+qrc_*.cpp
+ui_*.h
+
+# =========================
+# IDE files
+# =========================
+.idea/
+.vscode/
+
+# =========================
+# Logs / temporary files
+# =========================
+*.log
+*.tmp
+
+# =========================
+# Local configuration / secrets
+# =========================
+.env
+*.env
+secrets.*
+config.local.*

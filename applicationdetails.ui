@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ApplicationDetails</class>
+ <widget class="QDialog" name="ApplicationDetails">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>899</width>
+    <height>686</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>U-MAMS - Application Details</string>
+  </property>
+  <widget class="QLabel" name="lblTitle">
+   <property name="geometry">
+    <rect>
+     <x>330</x>
+     <y>10</y>
+     <width>211</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="contextMenuPolicy">
+    <enum>Qt::ContextMenuPolicy::PreventContextMenu</enum>
+   </property>
+   <property name="text">
+    <string>U-MAMS - Application Details</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lblApplicationID">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>70</y>
+     <width>131</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Application ID: APP-001</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lblStatus">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>120</y>
+     <width>151</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Status: PENDING</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lblStudentID">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>170</y>
+     <width>63</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Student ID:</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lblStudentName">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>220</y>
+     <width>91</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Student Name:</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lblMedicalID">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>280</y>
+     <width>63</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Medical ID:</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lblReason">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>330</y>
+     <width>121</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Reason for Absence:</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lblMedicalPeriod">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>380</y>
+     <width>101</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string> Medical Period:</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lblCourses">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>430</y>
+     <width>101</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Missed Courses :</string>
+   </property>
+  </widget>
+  <widget class="QTableWidget" name="tblCourses">
+   <property name="geometry">
+    <rect>
+     <x>120</x>
+     <y>440</y>
+     <width>251</width>
+     <height>121</height>
+    </rect>
+   </property>
+   <property name="columnCount">
+    <number>2</number>
+   </property>
+   <column>
+    <property name="text">
+     <string>Course name</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Course code</string>
+    </property>
+   </column>
+  </widget>
+  <widget class="QPushButton" name="btnBack">
+   <property name="geometry">
+    <rect>
+     <x>160</x>
+     <y>590</y>
+     <width>90</width>
+     <height>29</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Back</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btnApprove">
+   <property name="geometry">
+    <rect>
+     <x>300</x>
+     <y>590</y>
+     <width>90</width>
+     <height>29</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Approve</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
