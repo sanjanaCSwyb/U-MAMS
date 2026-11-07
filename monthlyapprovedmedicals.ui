@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MonthlyApprovedMedicals</class>
+ <widget class="QDialog" name="MonthlyApprovedMedicals">
+  <property name="geometry"><rect><x>0</x><y>0</y><width>1200</width><height>800</height></rect></property>
+  <property name="minimumSize"><size><width>900</width><height>600</height></size></property>
+  <property name="windowTitle"><string>U-MAMS - Monthly Approved Medicals</string></property>
+  <property name="styleSheet"><string notr="true">QDialog#MonthlyApprovedMedicals{background:#F7F1E3;color:#263238;font-family:Inter;font-size:14px;}
+QLabel{font-family:Inter;font-size:14px;color:#263238;background:transparent;border:none;}
+QFrame#header{background:#7A263A;border:none;}
+QLabel#headerBrand{font-size:24px;font-weight:600;color:#D6A21E;}
+QLabel#headerUniversity{font-size:11px;color:#FFFDF8;}
+QLabel#headerTitle{font-size:21px;font-weight:600;color:#FFFDF8;}
+QLabel#headerAudience{font-size:13px;color:#FFFDF8;}
+QFrame#filterCard,QFrame#resultsCard{background:#FFFDF8;border:1px solid #DBD1BA;border-radius:10px;}
+QLabel#lblSummary{font-size:18px;font-weight:600;color:#7A263A;}
+QLabel#lblDescription,QLabel#lblState{font-size:13px;color:#52616B;}
+QLabel#lblMonth,QLabel#lblYear{font-size:13px;font-weight:500;}
+QComboBox,QSpinBox{font-family:Inter;font-size:14px;color:#263238;background:#FFFDF8;border:1px solid #DBD1BA;border-radius:7px;padding:7px 12px;min-height:26px;}
+QComboBox:focus,QSpinBox:focus{border-color:#D6A21E;}
+QComboBox QAbstractItemView{color:#263238;background:#FFFDF8;selection-color:#FFFDF8;selection-background-color:#7A263A;}
+QToolButton#btnYearPrevious,QToolButton#btnYearNext{font-family:Inter;font-size:20px;font-weight:600;color:#263238;background:#FFFDF8;border:1px solid #DBD1BA;border-radius:7px;padding:0px;}
+QToolButton#btnYearPrevious:hover,QToolButton#btnYearPrevious:focus,QToolButton#btnYearNext:hover,QToolButton#btnYearNext:focus{color:#263238;background:#F6E8BD;border-color:#D6A21E;}
+QToolButton#btnYearPrevious:disabled,QToolButton#btnYearNext:disabled{color:#9B8D74;background:#EEE6D6;border-color:#DBD1BA;}
+QTreeWidget{font-family:Inter;font-size:14px;color:#263238;background:#FFFDF8;border:none;outline:none;selection-color:#263238;selection-background-color:#F6E8BD;}
+QTreeWidget::item{padding:9px 10px;border-bottom:1px solid #EEE6D6;}
+QTreeWidget::item:selected{color:#263238;background:#F6E8BD;}
+QTreeWidget::item:hover{background:#F7F1E3;}
+QTreeWidget::item:focus{border:1px solid #D6A21E;}
+QHeaderView::section{font-family:Inter;font-size:13px;font-weight:500;color:#FFFDF8;background:#7A263A;border:none;border-right:1px solid #9C5263;padding:12px 16px;}
+QPushButton{font-family:Inter;font-size:13px;font-weight:500;color:#FFFDF8;background:#7A263A;border:1px solid #7A263A;border-radius:8px;padding:12px 22px;min-height:20px;}
+QPushButton:hover,QPushButton:focus{border-color:#D6A21E;}
+QPushButton:pressed{background:#5B1929;}
+QPushButton:disabled{color:#61584A;background:#E6DED0;border-color:#C7BDAA;}
+QPushButton#btnBack{color:#34270A;background:#D6A21E;border-color:#D6A21E;}
+QPushButton#btnBack:hover,QPushButton#btnBack:focus{border-color:#7A263A;}</string></property>
+  <layout class="QVBoxLayout" name="rootLayout">
+   <property name="spacing"><number>0</number></property>
+   <property name="leftMargin"><number>0</number></property>
+   <property name="topMargin"><number>0</number></property>
+   <property name="rightMargin"><number>0</number></property>
+   <property name="bottomMargin"><number>0</number></property>
+   <item>
+    <widget class="QFrame" name="header">
+     <property name="minimumSize"><size><width>0</width><height>82</height></size></property>
+     <property name="maximumSize"><size><width>16777215</width><height>82</height></size></property>
+     <layout class="QHBoxLayout" name="headerLayout">
+      <property name="spacing"><number>14</number></property>
+      <property name="leftMargin"><number>24</number></property>
+      <property name="topMargin"><number>14</number></property>
+      <property name="rightMargin"><number>24</number></property>
+      <property name="bottomMargin"><number>14</number></property>
+      <item><widget class="QLabel" name="headerLogo"><property name="minimumSize"><size><width>48</width><height>48</height></size></property><property name="maximumSize"><size><width>48</width><height>48</height></size></property><property name="alignment"><set>Qt::AlignCenter</set></property></widget></item>
+      <item>
+       <layout class="QVBoxLayout" name="brandLayout">
+        <property name="spacing"><number>2</number></property>
+        <item><widget class="QLabel" name="headerBrand"><property name="text"><string>U-MAMS</string></property></widget></item>
+        <item><widget class="QLabel" name="headerUniversity"><property name="text"><string>University Medical Absence Management System</string></property></widget></item>
+       </layout>
+      </item>
+      <item><spacer name="headerSpacer"><property name="orientation"><enum>Qt::Horizontal</enum></property><property name="sizeHint" stdset="0"><size><width>30</width><height>20</height></size></property></spacer></item>
+      <item><widget class="QLabel" name="headerTitle"><property name="text"><string>Monthly Approved Medicals</string></property></widget></item>
+      <item><spacer name="audienceSpacer"><property name="orientation"><enum>Qt::Horizontal</enum></property><property name="sizeHint" stdset="0"><size><width>30</width><height>20</height></size></property></spacer></item>
+      <item><widget class="QLabel" name="headerAudience"><property name="text"><string>Admin</string></property></widget></item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <layout class="QVBoxLayout" name="bodyLayout" stretch="0,1,0">
+     <property name="spacing"><number>18</number></property>
+     <property name="leftMargin"><number>32</number></property>
+     <property name="topMargin"><number>24</number></property>
+     <property name="rightMargin"><number>32</number></property>
+     <property name="bottomMargin"><number>24</number></property>
+     <item>
+      <widget class="QFrame" name="filterCard">
+       <layout class="QHBoxLayout" name="filterLayout">
+        <property name="spacing"><number>14</number></property>
+        <property name="leftMargin"><number>20</number></property>
+        <property name="topMargin"><number>16</number></property>
+        <property name="rightMargin"><number>20</number></property>
+        <property name="bottomMargin"><number>16</number></property>
+        <item><widget class="QLabel" name="lblMonth"><property name="text"><string>Month</string></property><property name="buddy"><cstring>cmbMonth</cstring></property></widget></item>
+        <item><widget class="QComboBox" name="cmbMonth"><property name="minimumSize"><size><width>180</width><height>44</height></size></property><property name="accessibleName"><string>Select month</string></property></widget></item>
+        <item><widget class="QLabel" name="lblYear"><property name="text"><string>Year</string></property><property name="buddy"><cstring>spnYear</cstring></property></widget></item>
+        <item>
+         <layout class="QHBoxLayout" name="yearControlLayout">
+          <property name="spacing"><number>6</number></property>
+          <item><widget class="QToolButton" name="btnYearPrevious"><property name="minimumSize"><size><width>34</width><height>44</height></size></property><property name="maximumSize"><size><width>34</width><height>44</height></size></property><property name="text"><string>−</string></property><property name="toolTip"><string>Previous year</string></property><property name="accessibleName"><string>Previous year</string></property><property name="cursor"><cursorShape>PointingHandCursor</cursorShape></property></widget></item>
+          <item><widget class="QSpinBox" name="spnYear"><property name="minimumSize"><size><width>110</width><height>44</height></size></property><property name="minimum"><number>1000</number></property><property name="maximum"><number>9999</number></property><property name="keyboardTracking"><bool>false</bool></property><property name="buttonSymbols"><enum>QAbstractSpinBox::NoButtons</enum></property><property name="accessibleName"><string>Select year</string></property></widget></item>
+          <item><widget class="QToolButton" name="btnYearNext"><property name="minimumSize"><size><width>34</width><height>44</height></size></property><property name="maximumSize"><size><width>34</width><height>44</height></size></property><property name="text"><string>+</string></property><property name="toolTip"><string>Next year</string></property><property name="accessibleName"><string>Next year</string></property><property name="cursor"><cursorShape>PointingHandCursor</cursorShape></property></widget></item>
+         </layout>
+        </item>
+        <item><spacer name="filterSpacer"><property name="orientation"><enum>Qt::Horizontal</enum></property><property name="sizeHint" stdset="0"><size><width>40</width><height>20</height></size></property></spacer></item>
+        <item><widget class="QPushButton" name="btnRefresh"><property name="text"><string>REFRESH</string></property><property name="autoDefault"><bool>false</bool></property><property name="cursor"><cursorShape>PointingHandCursor</cursorShape></property></widget></item>
+       </layout>
+      </widget>
+     </item>
+     <item>
+      <widget class="QFrame" name="resultsCard">
+       <layout class="QVBoxLayout" name="resultsLayout">
+        <property name="spacing"><number>10</number></property>
+        <property name="leftMargin"><number>20</number></property>
+        <property name="topMargin"><number>20</number></property>
+        <property name="rightMargin"><number>20</number></property>
+        <property name="bottomMargin"><number>16</number></property>
+        <item><widget class="QLabel" name="lblSummary"><property name="text"><string>Approved medicals</string></property><property name="textFormat"><enum>Qt::PlainText</enum></property><property name="wordWrap"><bool>true</bool></property></widget></item>
+        <item><widget class="QLabel" name="lblDescription"><property name="text"><string>Medical periods overlapping the selected month. Select an application to view its full details.</string></property><property name="wordWrap"><bool>true</bool></property></widget></item>
+        <item>
+         <widget class="QStackedWidget" name="resultsStack">
+          <property name="currentIndex"><number>0</number></property>
+          <widget class="QWidget" name="pageApplications">
+           <layout class="QVBoxLayout" name="treeLayout">
+            <property name="spacing"><number>0</number></property>
+            <property name="leftMargin"><number>0</number></property><property name="topMargin"><number>4</number></property><property name="rightMargin"><number>0</number></property><property name="bottomMargin"><number>0</number></property>
+            <item><widget class="QTreeWidget" name="treeApplications"><property name="editTriggers"><set>QAbstractItemView::NoEditTriggers</set></property><property name="selectionMode"><enum>QAbstractItemView::SingleSelection</enum></property><property name="selectionBehavior"><enum>QAbstractItemView::SelectRows</enum></property><property name="alternatingRowColors"><bool>false</bool></property><property name="rootIsDecorated"><bool>true</bool></property><property name="uniformRowHeights"><bool>false</bool></property><property name="expandsOnDoubleClick"><bool>false</bool></property><property name="accessibleName"><string>Approved medicals grouped by registration category</string></property><column><property name="text"><string>Registration / category</string></property></column><column><property name="text"><string>Full medical period</string></property></column><column><property name="text"><string>Application ID</string></property></column></widget></item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="pageState">
+           <layout class="QVBoxLayout" name="stateLayout">
+            <item><spacer name="stateTopSpacer"><property name="orientation"><enum>Qt::Vertical</enum></property><property name="sizeHint" stdset="0"><size><width>20</width><height>40</height></size></property></spacer></item>
+            <item><widget class="QLabel" name="lblState"><property name="text"><string>No approved medicals for this month.</string></property><property name="textFormat"><enum>Qt::PlainText</enum></property><property name="alignment"><set>Qt::AlignCenter</set></property><property name="wordWrap"><bool>true</bool></property></widget></item>
+            <item><spacer name="stateBottomSpacer"><property name="orientation"><enum>Qt::Vertical</enum></property><property name="sizeHint" stdset="0"><size><width>20</width><height>40</height></size></property></spacer></item>
+           </layout>
+          </widget>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="footerLayout">
+       <property name="spacing"><number>14</number></property>
+       <item><spacer name="footerSpacer"><property name="orientation"><enum>Qt::Horizontal</enum></property><property name="sizeHint" stdset="0"><size><width>40</width><height>20</height></size></property></spacer></item>
+       <item><widget class="QPushButton" name="btnViewDetails"><property name="minimumSize"><size><width>170</width><height>46</height></size></property><property name="text"><string>VIEW DETAILS</string></property><property name="enabled"><bool>false</bool></property><property name="autoDefault"><bool>false</bool></property><property name="cursor"><cursorShape>PointingHandCursor</cursorShape></property></widget></item>
+       <item><widget class="QPushButton" name="btnBack"><property name="minimumSize"><size><width>150</width><height>46</height></size></property><property name="text"><string>BACK</string></property><property name="autoDefault"><bool>false</bool></property><property name="shortcut"><string>Alt+Left</string></property><property name="cursor"><cursorShape>PointingHandCursor</cursorShape></property></widget></item>
+      </layout>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <tabstops><tabstop>cmbMonth</tabstop><tabstop>btnYearPrevious</tabstop><tabstop>spnYear</tabstop><tabstop>btnYearNext</tabstop><tabstop>btnRefresh</tabstop><tabstop>treeApplications</tabstop><tabstop>btnViewDetails</tabstop><tabstop>btnBack</tabstop></tabstops>
+ <resources/>
+ <connections/>
+</ui>

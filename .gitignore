@@ -50,3 +50,17 @@ ui_*.h
 *.env
 secrets.*
 config.local.*
+# U-MAMS database secrets and recoverable local backups
+/umams.local.ini
+/database.ini
+/database/*.local.ini
+/.codex-backup-*/
+
+# Keep local credentials, database exports and edit backups out of Git
+.env.*
+*.local.ini
+*.bak
+*.dump.sql
+*.sql.gz
+/.mysql-private/
+/U-MAMS Database.sql

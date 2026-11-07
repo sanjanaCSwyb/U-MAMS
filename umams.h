@@ -2,6 +2,7 @@
 #define UMAMS_H
 
 #include <QMainWindow>
+#include "app_session.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -18,11 +19,16 @@ public:
     ~UMAMS() override;
 
 private slots:
+
     void onStudentLoginClicked();
+
     void onAdminLoginClicked();
 
 private:
+
+    void runLoginFlow(AppSession::Role role);
     Ui::UMAMS *ui;
+    bool loginFlowActive = false;
 };
 
 #endif // UMAMS_H

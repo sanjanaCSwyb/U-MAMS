@@ -1,9 +1,15 @@
+#include "app_session.h"
+#include "database.h"
+#include "figma_ui.h"
 #include "adminlogin.h"
 #include "ui_adminlogin.h"
-#include "dashboard.h"
 
 #include <QMessageBox>
 #include <QLineEdit>
+#include <QPushButton>
+#include <QToolButton>
+#include <QScopedValueRollback>
+
 
 AdminLogin::AdminLogin(QWidget *parent)
     : QDialog(parent)
@@ -12,27 +18,46 @@ AdminLogin::AdminLogin(QWidget *parent)
 {
     ui->setupUi(this);
 
-    // Password field
+    setWindowTitle("U-MAMS - Admin Login");
+
+
+    // =========================================================
+    // PASSWORD SETTINGS
+    // =========================================================
+
     ui->txtPassword->setEchoMode(QLineEdit::Password);
 
-    // Show / hide password button
-    ui->btnShowPassword->setText("👁");
+    // Eye button
+    ui->btnShowPassword->setText(QStringLiteral("\u25CF"));
+    ui->btnShowPassword->setToolTip("Show password");
 
-    connect(ui->btnLogin,
-            &QPushButton::clicked,
-            this,
-            &AdminLogin::onLoginClicked);
+    // =========================================================
+    // BUTTON CONNECTIONS
+    // =========================================================
 
-    connect(ui->btnBack,
-            &QPushButton::clicked,
-            this,
-            &AdminLogin::onBackClicked);
+    connect(
+        ui->btnLogin,
+        &QPushButton::clicked,
+        this,
+        &AdminLogin::onLoginClicked
+        );
 
-    connect(ui->btnShowPassword,
-            &QToolButton::clicked,
-            this,
-            &AdminLogin::onShowPasswordClicked);
+    connect(
+        ui->btnBack,
+        &QPushButton::clicked,
+        this,
+        &AdminLogin::onBackClicked
+        );
+
+    connect(
+        ui->btnShowPassword,
+        &QToolButton::clicked,
+        this,
+        &AdminLogin::onShowPasswordClicked
+        );
+    FigmaUi::install(this);
 }
+
 
 AdminLogin::~AdminLogin()
 {
@@ -40,15 +65,23 @@ AdminLogin::~AdminLogin()
 }
 
 
-// ===============================
+// =========================================================
 // ADMIN LOGIN
-// ===============================
+// =========================================================
 
 void AdminLogin::onLoginClicked()
 {
-    QString username = ui->txtUsername->text().trimmed();
-    QString password = ui->txtPassword->text();
+    if (authenticationInProgress) return;
+    QScopedValueRollback<bool> authenticating(authenticationInProgress, true);
+    authenticatedUser = {};
+    QString username =
+        ui->txtUsername->text().trimmed();
 
+    QString password =
+        ui->txtPassword->text();
+
+
+    // Check empty fields
     if (username.isEmpty() || password.isEmpty())
     {
         QMessageBox::warning(
@@ -60,42 +93,49 @@ void AdminLogin::onLoginClicked()
         return;
     }
 
-    // Temporary login credentials
-    // Database authentication will be added later.
-    if (username == "admin" && password == "admin123")
+
+    AppSession::Identity user;
+    ui->btnLogin->setEnabled(false);
+    const bool authenticated =
+        Database::authenticate(username, password, AppSession::Role::Admin, user);
+    ui->btnLogin->setEnabled(true);
+
+    if (authenticated)
     {
-        Dashboard *dashboard = new Dashboard();
-
-        dashboard->setAttribute(Qt::WA_DeleteOnClose);
-
-        dashboard->show();
-
-        this->close();
+        authenticatedUser = user;
+        ui->txtPassword->clear();
+        done(AppSession::LoginAuthenticated);
     }
     else
     {
         QMessageBox::warning(
             this,
             "Login Failed",
-            "Invalid Admin Username or Password."
+            Database::error().isEmpty()
+                ? tr("Unable to sign in with this admin account.")
+                : Database::error()
             );
+        ui->txtPassword->clear();
+        ui->txtPassword->setFocus();
     }
 }
 
 
-// ===============================
-// BACK
-// ===============================
+// =========================================================
+// BACK BUTTON
+// =========================================================
 
 void AdminLogin::onBackClicked()
 {
-    close();
+    ui->txtPassword->clear();
+    authenticatedUser = {};
+    done(AppSession::LoginBackToPortal);
 }
 
 
-// ===============================
-// SHOW / HIDE PASSWORD
-// ===============================
+// =========================================================
+// PASSWORD VISIBILITY
+// =========================================================
 
 void AdminLogin::onShowPasswordClicked()
 {
@@ -104,9 +144,21 @@ void AdminLogin::onShowPasswordClicked()
     if (passwordVisible)
     {
         ui->txtPassword->setEchoMode(QLineEdit::Normal);
+
+        ui->btnShowPassword->setText(
+            QStringLiteral("\u25CF")
+            );
+
+        ui->btnShowPassword->setToolTip("Hide password");
     }
     else
     {
         ui->txtPassword->setEchoMode(QLineEdit::Password);
+
+        ui->btnShowPassword->setText(
+            QStringLiteral("\u25CF")
+            );
+
+        ui->btnShowPassword->setToolTip("Show password");
     }
 }

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <ui version="4.0">
  <class>StudentLogin</class>
  <widget class="QDialog" name="StudentLogin">
@@ -6,102 +6,289 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>705</width>
-    <height>456</height>
+    <width>1200</width>
+    <height>800</height>
    </rect>
   </property>
-  <property name="windowTitle">
-   <string>Dialog</string>
+  <property name="minimumSize">
+   <size>
+    <width>600</width>
+    <height>600</height>
+   </size>
   </property>
-  <widget class="QLabel" name="lblTitle">
+  <property name="windowTitle">
+   <string>U-MAMS - Student Login</string>
+  </property>
+  <property name="styleSheet">
+   <string>background:#F7F1E3;</string>
+  </property>
+  <widget class="QWidget" name="figmaCanvas">
    <property name="geometry">
     <rect>
-     <x>290</x>
-     <y>30</y>
-     <width>171</width>
-     <height>41</height>
+     <x>0</x>
+     <y>0</y>
+     <width>1200</width>
+     <height>800</height>
     </rect>
    </property>
-   <property name="text">
-    <string>U-MAMS - Student Login</string>
+   <property name="styleSheet">
+    <string>QWidget#figmaCanvas{background:#F7F1E3;}</string>
    </property>
-  </widget>
-  <widget class="QLabel" name="lblStudentID">
-   <property name="geometry">
-    <rect>
-     <x>60</x>
-     <y>120</y>
-     <width>101</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Student ID :</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="lblPassword">
-   <property name="geometry">
-    <rect>
-     <x>60</x>
-     <y>200</y>
-     <width>63</width>
-     <height>20</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Password :</string>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="txtStudentID">
-   <property name="geometry">
-    <rect>
-     <x>140</x>
-     <y>120</y>
-     <width>321</width>
-     <height>28</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="txtPassword">
-   <property name="geometry">
-    <rect>
-     <x>140</x>
-     <y>200</y>
-     <width>321</width>
-     <height>28</height>
-    </rect>
-   </property>
-   <property name="echoMode">
-    <enum>QLineEdit::EchoMode::Password</enum>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="btnLogin">
-   <property name="geometry">
-    <rect>
-     <x>260</x>
-     <y>360</y>
-     <width>151</width>
-     <height>41</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>LOGIN</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="btnBack">
-   <property name="geometry">
-    <rect>
-     <x>480</x>
-     <y>360</y>
-     <width>151</width>
-     <height>41</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>BACK</string>
-   </property>
+   <widget class="QFrame" name="loginCard">
+    <property name="geometry">
+     <rect>
+      <x>370</x>
+      <y>95</y>
+      <width>460</width>
+      <height>610</height>
+     </rect>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::NoFrame</enum>
+    </property>
+    <property name="styleSheet">
+     <string>QFrame#loginCard{background:#FFFDF8;border:1px solid #D6A21E;border-radius:9px;}</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblLogo">
+    <property name="geometry">
+     <rect>
+      <x>558</x>
+      <y>120</y>
+      <width>84</width>
+      <height>84</height>
+     </rect>
+    </property>
+    <property name="pixmap">
+     <pixmap>:/assets/wayamba_logo.png</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>false</bool>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+    <property name="styleSheet">
+     <string>background:transparent;border:none;</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblTitle">
+    <property name="geometry">
+     <rect>
+      <x>420</x>
+      <y>210</y>
+      <width>320</width>
+      <height>40</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>U-MAMS</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignLeft|Qt::AlignVCenter</set>
+    </property>
+    <property name="styleSheet">
+     <string>font-family:Inter; font-size:30px; font-weight:600;color:#7A263A;background:transparent;border:none;padding:0px;</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblLoginType">
+    <property name="geometry">
+     <rect>
+      <x>420</x>
+      <y>254</y>
+      <width>340</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>STUDENT LOGIN</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignLeft|Qt::AlignVCenter</set>
+    </property>
+    <property name="styleSheet">
+     <string>font-family:Inter; font-size:16px; font-weight:500;color:#43634B;background:transparent;border:none;padding:0px;</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblStudentID">
+    <property name="geometry">
+     <rect>
+      <x>430</x>
+      <y>315</y>
+      <width>340</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Student ID</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignLeft|Qt::AlignVCenter</set>
+    </property>
+    <property name="styleSheet">
+     <string>font-family:Inter; font-size:13px; font-weight:400;color:#333333;background:transparent;border:none;padding:0px;</string>
+    </property>
+    <property name="buddy">
+     <cstring>txtStudentID</cstring>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="txtStudentID">
+    <property name="geometry">
+     <rect>
+      <x>430</x>
+      <y>340</y>
+      <width>340</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="placeholderText">
+     <string>Enter student ID</string>
+    </property>
+    <property name="frame">
+     <bool>false</bool>
+    </property>
+    <property name="styleSheet">
+     <string>QLineEdit#txtStudentID{font-family:Inter;font-size:14px;color:#333333;background:#FFFDF8;border:1px solid #DDD7C8;border-radius:8px;padding:0px 14px;}QLineEdit#txtStudentID:focus{border:1px solid #D6A21E;}</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblPassword">
+    <property name="geometry">
+     <rect>
+      <x>430</x>
+      <y>407</y>
+      <width>340</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Password</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignLeft|Qt::AlignVCenter</set>
+    </property>
+    <property name="styleSheet">
+     <string>font-family:Inter; font-size:13px; font-weight:400;color:#333333;background:transparent;border:none;padding:0px;</string>
+    </property>
+    <property name="buddy">
+     <cstring>txtPassword</cstring>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="txtPassword">
+    <property name="geometry">
+     <rect>
+      <x>430</x>
+      <y>435</y>
+      <width>340</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="placeholderText">
+     <string>Enter password</string>
+    </property>
+    <property name="echoMode">
+     <enum>QLineEdit::Password</enum>
+    </property>
+    <property name="frame">
+     <bool>false</bool>
+    </property>
+    <property name="styleSheet">
+     <string>QLineEdit#txtPassword{font-family:Inter;font-size:14px;color:#333333;background:#FFFDF8;border:1px solid #DDD7C8;border-radius:8px;padding:0px 55px 0px 14px;}QLineEdit#txtPassword:focus{border:1px solid #D6A21E;}</string>
+    </property>
+   </widget>
+   <widget class="QToolButton" name="btnShowPassword">
+    <property name="geometry">
+     <rect>
+      <x>720</x>
+      <y>435</y>
+      <width>50</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>●</string>
+    </property>
+    <property name="toolTip">
+     <string>Show or hide password</string>
+    </property>
+    <property name="accessibleName">
+     <string>Show or hide password</string>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string>QToolButton#btnShowPassword{font-family:Inter;font-size:16px;color:#7A263A;background:#FFFDF8;border:1px solid #DDD7C8;border-radius:8px;padding:0px;}QToolButton#btnShowPassword:hover{border-color:#D6A21E;}</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnLogin">
+    <property name="geometry">
+     <rect>
+      <x>430</x>
+      <y>510</y>
+      <width>340</width>
+      <height>50</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>LOGIN</string>
+    </property>
+    <property name="autoDefault">
+     <bool>false</bool>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string>QPushButton#btnLogin{font-family:Inter;font-size:13px;font-weight:400;color:#FFFDF8;background:#7A263A;border:1px solid #7A263A;border-radius:9px;padding:0px;}QPushButton#btnLogin:hover{border:1px solid #D6A21E;}QPushButton#btnLogin:focus{border:1px solid #D6A21E;}</string>
+    </property>
+    <property name="default">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnBack">
+    <property name="geometry">
+     <rect>
+      <x>430</x>
+      <y>640</y>
+      <width>340</width>
+      <height>50</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>BACK</string>
+    </property>
+    <property name="autoDefault">
+     <bool>false</bool>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string>QPushButton#btnBack{font-family:Inter;font-size:13px;font-weight:400;color:#7A263A;background:#D6A21E;border:1px solid #D6A21E;border-radius:9px;padding:0px;}QPushButton#btnBack:hover{border:1px solid #D6A21E;}QPushButton#btnBack:focus{border:1px solid #D6A21E;}</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnRegister">
+    <property name="geometry">
+     <rect><x>430</x><y>575</y><width>340</width><height>50</height></rect>
+    </property>
+    <property name="text"><string>REGISTER</string></property>
+    <property name="autoDefault"><bool>false</bool></property>
+    <property name="cursor"><cursorShape>PointingHandCursor</cursorShape></property>
+    <property name="toolTip"><string>Create a student account</string></property>
+    <property name="styleSheet">
+     <string>QPushButton#btnRegister{font-family:Inter;font-size:13px;font-weight:500;color:#7A263A;background:#FFFDF8;border:1px solid #7A263A;border-radius:9px;padding:0px;}QPushButton#btnRegister:hover,QPushButton#btnRegister:focus{background:#F7F1E3;border-color:#D6A21E;}</string>
+    </property>
+   </widget>
   </widget>
  </widget>
- <resources/>
- <connections/>
+ <tabstops>
+  <tabstop>txtStudentID</tabstop>
+  <tabstop>txtPassword</tabstop>
+  <tabstop>btnShowPassword</tabstop>
+  <tabstop>btnLogin</tabstop>
+  <tabstop>btnRegister</tabstop>
+  <tabstop>btnBack</tabstop>
+ </tabstops>
+ <resources />
+ <connections />
 </ui>

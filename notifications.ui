@@ -6,157 +6,585 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>612</width>
-    <height>610</height>
+    <width>1200</width>
+    <height>800</height>
    </rect>
   </property>
-  <property name="windowTitle">
-   <string>Dialog</string>
+  <property name="minimumSize">
+   <size>
+    <width>900</width>
+    <height>600</height>
+   </size>
   </property>
-  <widget class="QLabel" name="lblTitle">
+  <property name="windowTitle">
+   <string>U-MAMS - Notifications</string>
+  </property>
+  <widget class="QWidget" name="figmaCanvas">
    <property name="geometry">
     <rect>
-     <x>260</x>
-     <y>10</y>
-     <width>81</width>
-     <height>21</height>
+     <x>0</x>
+     <y>0</y>
+     <width>1200</width>
+     <height>800</height>
     </rect>
    </property>
-   <property name="text">
-    <string>Notifications</string>
+   <property name="styleSheet">
+    <string>QWidget#figmaCanvas { background-color: #F7F1E3; }</string>
    </property>
-  </widget>
-  <widget class="QLabel" name="lblNotificationTitle">
-   <property name="geometry">
-    <rect>
-     <x>20</x>
-     <y>60</y>
-     <width>181</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Medical application submitted</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="lblNotificationMessage">
-   <property name="geometry">
-    <rect>
-     <x>20</x>
-     <y>110</y>
-     <width>211</width>
-     <height>21</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>APP-001 was submitted successfully.</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="lblNotificationTime">
-   <property name="geometry">
-    <rect>
-     <x>200</x>
-     <y>140</y>
-     <width>63</width>
-     <height>20</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Just now</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="lblNotificationTime2">
-   <property name="geometry">
-    <rect>
-     <x>220</x>
-     <y>280</y>
-     <width>63</width>
-     <height>20</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Today</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="lblNotificationTitle2">
-   <property name="geometry">
-    <rect>
-     <x>20</x>
-     <y>200</y>
-     <width>181</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Application approved</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="lblNotificationMessage2">
-   <property name="geometry">
-    <rect>
-     <x>20</x>
-     <y>250</y>
-     <width>271</width>
-     <height>21</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>APP-002 for student 249172 has been approved.</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="lblNotificationTime3">
-   <property name="geometry">
-    <rect>
-     <x>210</x>
-     <y>440</y>
-     <width>63</width>
-     <height>20</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Yesterday</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="lblNotificationTitle3">
-   <property name="geometry">
-    <rect>
-     <x>30</x>
-     <y>360</y>
-     <width>181</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Application declined</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="lblNotificationMessage3">
-   <property name="geometry">
-    <rect>
-     <x>30</x>
-     <y>410</y>
-     <width>211</width>
-     <height>21</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>APP-003 has been declined.</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="btnBack">
-   <property name="geometry">
-    <rect>
-     <x>440</x>
-     <y>540</y>
-     <width>90</width>
-     <height>29</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Back</string>
-   </property>
+   <widget class="QFrame" name="header">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>1200</width>
+      <height>72</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string>QFrame#header {background-color: #7A263A; border: none;}</string>
+    </property>
+    <widget class="QLabel" name="headerLogo">
+     <property name="geometry">
+      <rect>
+       <x>22</x>
+       <y>16</y>
+       <width>42</width>
+       <height>42</height>
+      </rect>
+     </property>
+     <property name="pixmap">
+      <pixmap>:/assets/wayamba_logo.png</pixmap>
+     </property>
+     <property name="scaledContents">
+      <bool>true</bool>
+     </property>
+     <property name="styleSheet">
+      <string>background: transparent; border: none;</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="headerBrand">
+     <property name="geometry">
+      <rect>
+       <x>76</x>
+       <y>10</y>
+       <width>235</width>
+       <height>32</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>U-MAMS</string>
+     </property>
+     <property name="styleSheet">
+      <string>font-family: Inter; font-size: 24px; font-weight: 700; color: #D6A21E; background: transparent; border: none;</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="headerBrandSubtitle">
+     <property name="geometry">
+      <rect>
+       <x>76</x>
+       <y>42</y>
+       <width>510</width>
+       <height>17</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>University Medical Absence Management System</string>
+     </property>
+     <property name="styleSheet">
+      <string>font-family: Inter; font-size: 11px; font-weight: 400; color: white; background: transparent; border: none;</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="headerTitle">
+     <property name="geometry">
+      <rect>
+       <x>600</x>
+       <y>11</y>
+       <width>230</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Notifications</string>
+     </property>
+     <property name="styleSheet">
+      <string>font-family: Inter; font-size: 20px; font-weight: 500; color: white; background: transparent; border: none;</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="headerSubtitle">
+     <property name="geometry">
+      <rect>
+       <x>570</x>
+       <y>39</y>
+       <width>290</width>
+       <height>17</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Application status updates</string>
+     </property>
+     <property name="styleSheet">
+      <string>font-family: Inter; font-size: 10px; font-weight: 400; color: white; background: transparent; border: none;</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="headerAudience">
+     <property name="geometry">
+      <rect>
+       <x>1100</x>
+       <y>23</y>
+       <width>80</width>
+       <height>26</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Admin</string>
+     </property>
+     <property name="styleSheet">
+      <string>font-family: Inter; font-size: 14px; color: white; background: transparent; border: none;</string>
+     </property>
+     <property name="figmaNav" stdset="0">
+      <string notr="true">password</string>
+     </property>
+     <property name="toolTip">
+      <string>Change admin password</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QFrame" name="sidebar">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>72</y>
+      <width>220</width>
+      <height>728</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string>QFrame#sidebar { background-color: #7A263A; border: none; }</string>
+    </property>
+    <widget class="QPushButton" name="btnSidebarDashboard">
+     <property name="geometry">
+      <rect>
+       <x>16</x>
+       <y>30</y>
+       <width>188</width>
+       <height>42</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Dashboard</string>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="styleSheet">
+      <string>QPushButton#btnSidebarDashboard { font-family: Inter; font-size: 12px; font-weight: 400; color: white; background-color: #7A263A; border: none; border-radius: 6px; padding: 0px; } QPushButton#btnSidebarDashboard:hover { background-color: #922F48; }</string>
+     </property>
+     <property name="figmaNav" stdset="0">
+      <string notr="true">dashboard</string>
+     </property>
+     <property name="styleSheet">
+      <string>QPushButton#btnSidebarDashboard {font-family: Inter; font-size: 12px; font-weight: 400; color: white; background: transparent; border: none; border-radius: 7px; text-align: left; padding-left: 16px;} QPushButton#btnSidebarDashboard:hover { background-color: #922F48;}</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="btnSidebarMedical">
+     <property name="geometry">
+      <rect>
+       <x>16</x>
+       <y>85</y>
+       <width>188</width>
+       <height>42</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Medical Applications</string>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="styleSheet">
+      <string>QPushButton#btnSidebarMedical { font-family: Inter; font-size: 12px; font-weight: 400; color: white; background-color: #7A263A; border: none; border-radius: 6px; padding: 0px; } QPushButton#btnSidebarMedical:hover { background-color: #922F48; }</string>
+     </property>
+     <property name="figmaNav" stdset="0">
+      <string notr="true">medical</string>
+     </property>
+     <property name="styleSheet">
+      <string>QPushButton#btnSidebarMedical {font-family: Inter; font-size: 12px; font-weight: 400; color: white; background: transparent; border: none; border-radius: 7px; text-align: left; padding-left: 16px;} QPushButton#btnSidebarMedical:hover { background-color: #922F48;}</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="btnSidebarApplications">
+     <property name="geometry">
+      <rect>
+       <x>16</x>
+       <y>140</y>
+       <width>188</width>
+       <height>42</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>View Applications</string>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="styleSheet">
+      <string>QPushButton#btnSidebarApplications { font-family: Inter; font-size: 12px; font-weight: 400; color: white; background-color: #7A263A; border: none; border-radius: 6px; padding: 0px; } QPushButton#btnSidebarApplications:hover { background-color: #922F48; }</string>
+     </property>
+     <property name="figmaNav" stdset="0">
+      <string notr="true">applications</string>
+     </property>
+     <property name="styleSheet">
+      <string>QPushButton#btnSidebarApplications {font-family: Inter; font-size: 12px; font-weight: 400; color: white; background: transparent; border: none; border-radius: 7px; text-align: left; padding-left: 16px;} QPushButton#btnSidebarApplications:hover { background-color: #922F48;}</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="btnApproveDecline">
+     <property name="geometry">
+      <rect>
+       <x>16</x>
+       <y>195</y>
+       <width>188</width>
+       <height>42</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Approve / Decline</string>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="styleSheet">
+      <string>QPushButton#btnApproveDecline { font-family: Inter; font-size: 12px; font-weight: 400; color: white; background-color: #7A263A; border: none; border-radius: 6px; padding: 0px; } QPushButton#btnApproveDecline:hover { background-color: #922F48; }</string>
+     </property>
+     <property name="figmaNav" stdset="0">
+      <string notr="true">review</string>
+     </property>
+     <property name="styleSheet">
+      <string>QPushButton#btnApproveDecline {font-family: Inter; font-size: 12px; font-weight: 400; color: white; background: transparent; border: none; border-radius: 7px; text-align: left; padding-left: 16px;} QPushButton#btnApproveDecline:hover { background-color: #922F48;}</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="sidebarActive">
+     <property name="geometry">
+      <rect>
+       <x>16</x>
+       <y>250</y>
+       <width>188</width>
+       <height>42</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Notifications</string>
+     </property>
+     <property name="styleSheet">
+      <string>font-family: Inter; font-size: 12px; font-weight: 400; color: #263238; background: transparent; border: none;</string>
+     </property>
+     <property name="styleSheet">
+      <string>font-family: Inter; font-size: 12px; font-weight: 400; color: #263238; background-color: #D6A21E; border-radius: 7px; padding-left: 16px;</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="btnReports">
+     <property name="geometry">
+      <rect>
+       <x>16</x>
+       <y>305</y>
+       <width>188</width>
+       <height>42</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Reports</string>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="styleSheet">
+      <string>QPushButton#btnReports { font-family: Inter; font-size: 12px; font-weight: 400; color: white; background-color: #7A263A; border: none; border-radius: 6px; padding: 0px; } QPushButton#btnReports:hover { background-color: #922F48; }</string>
+     </property>
+     <property name="figmaNav" stdset="0">
+      <string notr="true">reports</string>
+     </property>
+     <property name="styleSheet">
+      <string>QPushButton#btnReports {font-family: Inter; font-size: 12px; font-weight: 400; color: white; background: transparent; border: none; border-radius: 7px; text-align: left; padding-left: 16px;} QPushButton#btnReports:hover { background-color: #922F48;}</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QLabel" name="lblTitle">
+    <property name="geometry">
+     <rect>
+      <x>260</x>
+      <y>104</y>
+      <width>850</width>
+      <height>38</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Notifications</string>
+    </property>
+    <property name="styleSheet">
+     <string>font-family: Inter; font-size: 26px; font-weight: 600; color: #7A263A; background: transparent; border: none;</string>
+    </property>
+   </widget>
+   <widget class="QFrame" name="notificationCard1">
+    <property name="geometry">
+     <rect>
+      <x>260</x>
+      <y>185</y>
+      <width>870</width>
+      <height>100</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string>QFrame#notificationCard1 { background-color: #FFFDF8; border: 1px solid #DBD1BA; border-radius: 8px; }</string>
+    </property>
+    <widget class="QFrame" name="notificationAccent1">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>25</y>
+       <width>12</width>
+       <height>50</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string>background-color: #2563EB; border: none; border-radius: 6px;</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="lblNotificationTitle">
+     <property name="geometry">
+      <rect>
+       <x>55</x>
+       <y>15</y>
+       <width>680</width>
+       <height>24</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Medical application submitted</string>
+     </property>
+     <property name="styleSheet">
+      <string>font-family: Inter; font-size: 16px; font-weight: 500; color: #263238; background: transparent; border: none;</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="lblNotificationMessage">
+     <property name="geometry">
+      <rect>
+       <x>55</x>
+       <y>49</y>
+       <width>680</width>
+       <height>24</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>APP-004 was submitted successfully.</string>
+     </property>
+     <property name="styleSheet">
+      <string>font-family: Inter; font-size: 13px; font-weight: 400; color: #263238; background: transparent; border: none;</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="lblNotificationTime">
+     <property name="geometry">
+      <rect>
+       <x>736</x>
+       <y>16</y>
+       <width>90</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Just now</string>
+     </property>
+     <property name="styleSheet">
+      <string>font-family: Inter; font-size: 11px; font-weight: 400; color: #263238; background: transparent; border: none;</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignRight|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QFrame" name="notificationCard2">
+    <property name="geometry">
+     <rect>
+      <x>260</x>
+      <y>310</y>
+      <width>870</width>
+      <height>100</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string>QFrame#notificationCard2 { background-color: #FFFDF8; border: 1px solid #DBD1BA; border-radius: 8px; }</string>
+    </property>
+    <widget class="QFrame" name="notificationAccent2">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>25</y>
+       <width>12</width>
+       <height>50</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string>background-color: #16A34A; border: none; border-radius: 6px;</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="lblNotificationTitle2">
+     <property name="geometry">
+      <rect>
+       <x>55</x>
+       <y>15</y>
+       <width>680</width>
+       <height>24</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Application approved</string>
+     </property>
+     <property name="styleSheet">
+      <string>font-family: Inter; font-size: 16px; font-weight: 500; color: #263238; background: transparent; border: none;</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="lblNotificationMessage2">
+     <property name="geometry">
+      <rect>
+       <x>55</x>
+       <y>49</y>
+       <width>680</width>
+       <height>24</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>An application has been approved.</string>
+     </property>
+     <property name="styleSheet">
+      <string>font-family: Inter; font-size: 13px; font-weight: 400; color: #263238; background: transparent; border: none;</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="lblNotificationTime2">
+     <property name="geometry">
+      <rect>
+       <x>736</x>
+       <y>16</y>
+       <width>90</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Today</string>
+     </property>
+     <property name="styleSheet">
+      <string>font-family: Inter; font-size: 11px; font-weight: 400; color: #263238; background: transparent; border: none;</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignRight|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QFrame" name="notificationCard3">
+    <property name="geometry">
+     <rect>
+      <x>260</x>
+      <y>435</y>
+      <width>870</width>
+      <height>100</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string>QFrame#notificationCard3 { background-color: #FFFDF8; border: 1px solid #DBD1BA; border-radius: 8px; }</string>
+    </property>
+    <widget class="QFrame" name="notificationAccent3">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>25</y>
+       <width>12</width>
+       <height>50</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string>background-color: #DC2626; border: none; border-radius: 6px;</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="lblNotificationTitle3">
+     <property name="geometry">
+      <rect>
+       <x>55</x>
+       <y>15</y>
+       <width>680</width>
+       <height>24</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Application declined</string>
+     </property>
+     <property name="styleSheet">
+      <string>font-family: Inter; font-size: 16px; font-weight: 500; color: #263238; background: transparent; border: none;</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="lblNotificationMessage3">
+     <property name="geometry">
+      <rect>
+       <x>55</x>
+       <y>49</y>
+       <width>680</width>
+       <height>24</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>APP-003 has been declined.</string>
+     </property>
+     <property name="styleSheet">
+      <string>font-family: Inter; font-size: 13px; font-weight: 400; color: #263238; background: transparent; border: none;</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="lblNotificationTime3">
+     <property name="geometry">
+      <rect>
+       <x>736</x>
+       <y>16</y>
+       <width>90</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Yesterday</string>
+     </property>
+     <property name="styleSheet">
+      <string>font-family: Inter; font-size: 11px; font-weight: 400; color: #263238; background: transparent; border: none;</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignRight|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QPushButton" name="btnBack">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>1</width>
+      <height>1</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Back</string>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string>QPushButton#btnBack { font-family: Inter; font-size: 14px; font-weight: 400; color: white; background-color: #7A263A; border: none; border-radius: 6px; padding: 0px; } QPushButton#btnBack:hover { background-color: #922F48; }</string>
+    </property>
+    <property name="visible">
+     <bool>false</bool>
+    </property>
+   </widget>
   </widget>
  </widget>
- <resources/>
- <connections/>
+ <resources>
+  <include location="resources.qrc" />
+ </resources>
+ <connections />
 </ui>

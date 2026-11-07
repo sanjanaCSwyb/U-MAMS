@@ -6,98 +6,180 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>1200</width>
+    <height>800</height>
    </rect>
   </property>
+  <property name="styleSheet">
+   <string>QMainWindow#UMAMS{background:#F7F1E3;}</string>
+  </property>
   <property name="windowTitle">
-   <string>UMAMS</string>
+   <string>U-MAMS</string>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>600</width>
+    <height>600</height>
+   </size>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QLabel" name="lblTitle">
+   <widget class="QWidget" name="figmaCanvas">
     <property name="geometry">
      <rect>
-      <x>350</x>
-      <y>30</y>
-      <width>61</width>
-      <height>31</height>
+      <x>0</x>
+      <y>0</y>
+      <width>1200</width>
+      <height>800</height>
      </rect>
     </property>
-    <property name="maximumSize">
-     <size>
-      <width>61</width>
-      <height>31</height>
-     </size>
+    <property name="styleSheet">
+     <string>QWidget#figmaCanvas{background:#F7F1E3;}</string>
     </property>
-    <property name="text">
-     <string>U-MAMS</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="lblSubtitle">
-    <property name="geometry">
-     <rect>
-      <x>260</x>
-      <y>60</y>
-      <width>261</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>University Medical Absense Management System</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="btnStudentLogin">
-    <property name="geometry">
-     <rect>
-      <x>190</x>
-      <y>240</y>
-      <width>421</width>
-      <height>71</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>STUDENT LOGIN</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="btnAdminLogin">
-    <property name="geometry">
-     <rect>
-      <x>190</x>
-      <y>380</y>
-      <width>421</width>
-      <height>71</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>ADMIN LOGIN</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="lblDepartment">
-    <property name="geometry">
-     <rect>
-      <x>280</x>
-      <y>120</y>
-      <width>241</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Material and Nano Science Department</string>
-    </property>
+    <widget class="QFrame" name="portalCard">
+     <property name="geometry">
+      <rect>
+       <x>390</x>
+       <y>120</y>
+       <width>420</width>
+       <height>560</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string>QFrame#portalCard{background:#FFFDF8;border:1px solid #D6A21E;border-radius:16px;}</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="lblLogo">
+     <property name="geometry">
+      <rect>
+       <x>558</x>
+       <y>80</y>
+       <width>84</width>
+       <height>84</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string>background:white;border:none;</string>
+     </property>
+     <property name="pixmap">
+      <pixmap>:/assets/wayamba_logo.png</pixmap>
+     </property>
+     <property name="scaledContents">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QLabel" name="lblTitle">
+     <property name="geometry">
+      <rect>
+       <x>430</x>
+       <y>170</y>
+       <width>340</width>
+       <height>50</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string>font-family:Inter;font-size:32px;font-weight:600;color:#7A263A;background:transparent;border:none;padding:0px;</string>
+     </property>
+     <property name="text">
+      <string>U-MAMS</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="lblSubtitle">
+     <property name="geometry">
+      <rect>
+       <x>420</x>
+       <y>225</y>
+       <width>360</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string>font-family:Inter;font-size:12px;font-weight:400;color:#333333;background:transparent;border:none;padding:0px;</string>
+     </property>
+     <property name="text">
+      <string>University Medical Absence Management System</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="lblChoosePortal">
+     <property name="geometry">
+      <rect>
+       <x>430</x>
+       <y>270</y>
+       <width>340</width>
+       <height>24</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string>font-family:Inter;font-size:16px;font-weight:500;color:#43634B;background:transparent;border:none;padding:0px;</string>
+     </property>
+     <property name="text">
+      <string>Choose your access portal</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="btnStudentLogin">
+     <property name="geometry">
+      <rect>
+       <x>440</x>
+       <y>420</y>
+       <width>320</width>
+       <height>50</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string>QPushButton#btnStudentLogin{font-family:Inter;font-size:13px;color:#FFFDF8;background:#7A263A;border:1px solid #7A263A;border-radius:9px;padding:0px;}QPushButton#btnStudentLogin:hover{border:1px solid #7A263A;}</string>
+     </property>
+     <property name="text">
+      <string>STUDENT LOGIN</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="btnAdminLogin">
+     <property name="geometry">
+      <rect>
+       <x>440</x>
+       <y>485</y>
+       <width>320</width>
+       <height>50</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string>QPushButton#btnAdminLogin{font-family:Inter;font-size:13px;color:#7A263A;background:#D6A21E;border:1px solid #D6A21E;border-radius:9px;padding:0px;}QPushButton#btnAdminLogin:hover{border:1px solid #7A263A;}</string>
+     </property>
+     <property name="text">
+      <string>ADMIN LOGIN</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="lblDepartment">
+     <property name="geometry">
+      <rect>
+       <x>430</x>
+       <y>555</y>
+       <width>340</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string>font-family:Inter;font-size:10px;font-weight:400;color:#7A263A;background:transparent;border:none;padding:0px;</string>
+     </property>
+     <property name="text">
+      <string>Material and Nano Science Department</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
    </widget>
   </widget>
-  <widget class="QMenuBar" name="menubar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>800</width>
-     <height>21</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QMenuBar" name="menubar" />
+  <widget class="QStatusBar" name="statusbar" />
  </widget>
- <resources/>
- <connections/>
+ <resources />
+ <connections />
 </ui>

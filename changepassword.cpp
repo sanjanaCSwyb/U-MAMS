@@ -1,3 +1,6 @@
+#include "app_session.h"
+#include "database.h"
+#include "figma_ui.h"
 #include "changepassword.h"
 #include "ui_changepassword.h"
 
@@ -13,6 +16,7 @@ ChangePassword::ChangePassword(QWidget *parent)
     , confirmPasswordVisible(false)
 {
     ui->setupUi(this);
+    if (!AppSession::protectAuthenticated(this)) return;
 
     // =========================================
     // PASSWORD FIELDS
@@ -27,9 +31,9 @@ ChangePassword::ChangePassword(QWidget *parent)
     // EYE BUTTONS
     // =========================================
 
-    ui->toolButtonCurrent->setText("👁");
-    ui->toolButtonNew->setText("👁");
-    ui->toolButtonConfirm->setText("👁");
+    ui->toolButtonCurrent->setText(QStringLiteral("\u25CF"));
+    ui->toolButtonNew->setText(QStringLiteral("\u25CF"));
+    ui->toolButtonConfirm->setText(QStringLiteral("\u25CF"));
 
 
     // =========================================
@@ -68,6 +72,7 @@ ChangePassword::ChangePassword(QWidget *parent)
             &QToolButton::clicked,
             this,
             &ChangePassword::toggleConfirmPassword);
+    FigmaUi::install(this);
 }
 
 
@@ -83,6 +88,7 @@ ChangePassword::~ChangePassword()
 
 void ChangePassword::onChangePasswordClicked()
 {
+    if (!AppSession::authenticated()) return;
     QString currentPassword =
         ui->txtCurrentPassword->text();
 
@@ -108,27 +114,13 @@ void ChangePassword::onChangePasswordClicked()
     }
 
 
-    // Temporary current password
-    // Database authentication will be added later.
-    if (currentPassword != "1234")
-    {
-        QMessageBox::warning(
-            this,
-            "Change Password",
-            "Current password is incorrect."
-            );
-
-        return;
-    }
-
-
     // Check password length
-    if (newPassword.length() < 4)
+    if (newPassword.length() < 8)
     {
         QMessageBox::warning(
             this,
             "Change Password",
-            "New password must contain at least 4 characters."
+            "New password must contain at least 8 characters."
             );
 
         return;
@@ -148,7 +140,17 @@ void ChangePassword::onChangePasswordClicked()
     }
 
 
-    // Temporary success
+    ui->btnChangePassword->setEnabled(false);
+    const bool saved = Database::changePassword(currentPassword, newPassword);
+    ui->btnChangePassword->setEnabled(true);
+    if (!saved) {
+        QMessageBox::warning(
+            this,
+            tr("Change Password"),
+            Database::error().isEmpty() ? tr("Unable to change your password.") : Database::error());
+        return;
+    }
+
     QMessageBox::information(
         this,
         "Password Changed",
@@ -179,6 +181,7 @@ void ChangePassword::onBackClicked()
 
 void ChangePassword::toggleCurrentPassword()
 {
+    if (!AppSession::authenticated()) return;
     currentPasswordVisible = !currentPasswordVisible;
 
     if (currentPasswordVisible)
@@ -202,6 +205,7 @@ void ChangePassword::toggleCurrentPassword()
 
 void ChangePassword::toggleNewPassword()
 {
+    if (!AppSession::authenticated()) return;
     newPasswordVisible = !newPasswordVisible;
 
     if (newPasswordVisible)
@@ -225,6 +229,7 @@ void ChangePassword::toggleNewPassword()
 
 void ChangePassword::toggleConfirmPassword()
 {
+    if (!AppSession::authenticated()) return;
     confirmPasswordVisible = !confirmPasswordVisible;
 
     if (confirmPasswordVisible)

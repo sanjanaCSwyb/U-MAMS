@@ -1,635 +1,188 @@
+#include "app_session.h"
 #include "dialog.h"
+#include "database.h"
+#include "figma_ui.h"
 #include "ui_dialog.h"
 #include "applicationdetails.h"
+#include <QStyledItemDelegate>
+#include <QStyleOptionViewItem>
+#include <QStyle>
+#include <QDate>
+
 
 #include <QMessageBox>
 #include <QTableWidgetItem>
 #include <QHeaderView>
 #include <QComboBox>
+#include <QLabel>
+#include <QPainter>
+#include <QStyle>
 
 
-Dialog::Dialog(QWidget *parent)
-    : QDialog(parent)
-    , ui(new Ui::Dialog)
+namespace {
+class RoundedStatusBadge final : public QLabel {
+public:
+    explicit RoundedStatusBadge(QWidget *parent=nullptr) : QLabel(parent) {
+        setAutoFillBackground(false);
+        setAttribute(Qt::WA_TranslucentBackground);
+    }
+protected:
+    void paintEvent(QPaintEvent *) override {
+        QPainter painter(this);
+        painter.setRenderHint(QPainter::Antialiasing, true);
+        const QString status=property("status").toString();
+        const QColor fill=status == "Approved" ? QColor("#3F6449") :
+                          status == "Declined" ? QColor("#7A263A") : QColor("#D6A21E");
+        painter.setPen(Qt::NoPen);
+        painter.setBrush(fill);
+        painter.drawRoundedRect(QRectF(0,0,width(),height()),height()/2.0,height()/2.0);
+        painter.setFont(font());
+        painter.setPen(Qt::white);
+        painter.drawText(rect(),Qt::AlignCenter,text());
+    }
+};
+
+class ApplicationTableDelegate final : public QStyledItemDelegate {
+public:
+    using QStyledItemDelegate::QStyledItemDelegate;
+    void paint(QPainter *painter, const QStyleOptionViewItem &option,
+               const QModelIndex &index) const override {
+        QStyleOptionViewItem clean(option);
+        clean.state &= ~QStyle::State_HasFocus;
+        QStyledItemDelegate::paint(painter, clean, index);
+    }
+protected:
+    void initStyleOption(QStyleOptionViewItem *option, const QModelIndex &index) const override {
+        QStyledItemDelegate::initStyleOption(option,index);
+        if ((index.column()==3 || index.column()==4)) {
+            const QDate date=QDate::fromString(index.data().toString(), "dd/MM/yyyy");
+            if (date.isValid()) option->text=date.toString("dd/MM/yy");
+        }
+        if (index.column()==5) option->text.clear();
+    }
+};
+}
+
+Dialog::Dialog(QWidget *parent) : QDialog(parent), ui(new Ui::Dialog)
 {
     ui->setupUi(this);
-
+    if (!AppSession::protect(this, AppSession::Role::Admin)) return;
     setWindowTitle("U-MAMS - View Applications");
-
-
-    // =====================================================
-    // STATUS FILTER
-    // =====================================================
-
     ui->cmbStatus->clear();
-
-    ui->cmbStatus->addItem("All");
-    ui->cmbStatus->addItem("Pending");
-    ui->cmbStatus->addItem("Approved");
-    ui->cmbStatus->addItem("Declined");
-
-
-    // =====================================================
-    // APPLICATION TABLE
-    // =====================================================
-
+    ui->cmbStatus->addItems({"All statuses", "Pending", "Approved", "Declined"});
     ui->tblApplications->setColumnCount(6);
-
-    ui->tblApplications->setHorizontalHeaderLabels({
-        "Application ID",
-        "Student ID",
-        "Student Name",
-        "From",
-        "To",
-        "Status"
+    ui->tblApplications->setHorizontalHeaderLabels({"Application ID", "Student ID", "Student Name", "From", "To", "Status"});
+    ui->tblApplications->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    ui->tblApplications->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tblApplications->setSelectionMode(QAbstractItemView::SingleSelection);
+    ui->tblApplications->horizontalHeader()->setSectionResizeMode(QHeaderView::Fixed);
+    ui->tblApplications->horizontalHeader()->setDefaultAlignment(Qt::AlignLeft | Qt::AlignVCenter);
+    const int widths[] = {150,120,170,110,110,208};
+    for (int column=0; column<6; ++column) ui->tblApplications->setColumnWidth(column, widths[column]);
+    ui->tblApplications->verticalHeader()->setDefaultSectionSize(78);
+    ui->tblApplications->setItemDelegate(new ApplicationTableDelegate(ui->tblApplications));
+    connect(ui->btnSearch, &QPushButton::clicked, this, &Dialog::onSearchClicked);
+    connect(ui->cmbStatus, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &Dialog::onStatusChanged);
+    connect(ui->btnApprove, &QPushButton::clicked, this, &Dialog::onApproveClicked);
+    connect(ui->btnDecline, &QPushButton::clicked, this, &Dialog::onDeclineClicked);
+    connect(ui->btnViewDetails, &QPushButton::clicked, this, &Dialog::onViewDetailsClicked);
+    connect(ui->btnBack, &QPushButton::clicked, this, &Dialog::onBackClicked);
+    connect(ui->tblApplications, &QTableWidget::itemSelectionChanged, this, [this] {
+        const int row = ui->tblApplications->currentRow();
+        const auto *item = row >= 0 ? ui->tblApplications->item(row,5) : nullptr;
+        const bool selected = AppSession::isAdmin() && item;
+        const bool pending = selected && item->text() == "Pending";
+        ui->btnViewDetails->setEnabled(selected);
+        ui->btnApprove->setEnabled(pending);
+        ui->btnDecline->setEnabled(pending);
     });
-
-    ui->tblApplications->setEditTriggers(
-        QAbstractItemView::NoEditTriggers
-        );
-
-    ui->tblApplications->setSelectionBehavior(
-        QAbstractItemView::SelectRows
-        );
-
-    ui->tblApplications->setSelectionMode(
-        QAbstractItemView::SingleSelection
-        );
-
-    ui->tblApplications->horizontalHeader()
-        ->setSectionResizeMode(QHeaderView::Stretch);
-
-
-    // =====================================================
-    // DEMO APPLICATION DATA
-    // =====================================================
-
-    ui->tblApplications->setRowCount(3);
-
-
-    // -----------------------------------------------------
-    // APP-001
-    // -----------------------------------------------------
-
-    ui->tblApplications->setItem(
-        0, 0,
-        new QTableWidgetItem("APP-001")
-        );
-
-    ui->tblApplications->setItem(
-        0, 1,
-        new QTableWidgetItem("249188")
-        );
-
-    ui->tblApplications->setItem(
-        0, 2,
-        new QTableWidgetItem("Kasun")
-        );
-
-    ui->tblApplications->setItem(
-        0, 3,
-        new QTableWidgetItem("01/09/2026")
-        );
-
-    ui->tblApplications->setItem(
-        0, 4,
-        new QTableWidgetItem("04/09/2026")
-        );
-
-    ui->tblApplications->setItem(
-        0, 5,
-        new QTableWidgetItem("Pending")
-        );
-
-
-    // -----------------------------------------------------
-    // APP-002
-    // -----------------------------------------------------
-
-    ui->tblApplications->setItem(
-        1, 0,
-        new QTableWidgetItem("APP-002")
-        );
-
-    ui->tblApplications->setItem(
-        1, 1,
-        new QTableWidgetItem("249172")
-        );
-
-    ui->tblApplications->setItem(
-        1, 2,
-        new QTableWidgetItem("Student 249172")
-        );
-
-    ui->tblApplications->setItem(
-        1, 3,
-        new QTableWidgetItem("05/08/2026")
-        );
-
-    ui->tblApplications->setItem(
-        1, 4,
-        new QTableWidgetItem("06/08/2026")
-        );
-
-    ui->tblApplications->setItem(
-        1, 5,
-        new QTableWidgetItem("Approved")
-        );
-
-
-    // -----------------------------------------------------
-    // APP-003
-    // -----------------------------------------------------
-
-    ui->tblApplications->setItem(
-        2, 0,
-        new QTableWidgetItem("APP-003")
-        );
-
-    ui->tblApplications->setItem(
-        2, 1,
-        new QTableWidgetItem("249160")
-        );
-
-    ui->tblApplications->setItem(
-        2, 2,
-        new QTableWidgetItem("Student 249160")
-        );
-
-    ui->tblApplications->setItem(
-        2, 3,
-        new QTableWidgetItem("02/07/2026")
-        );
-
-    ui->tblApplications->setItem(
-        2, 4,
-        new QTableWidgetItem("04/07/2026")
-        );
-
-    ui->tblApplications->setItem(
-        2, 5,
-        new QTableWidgetItem("Declined")
-        );
-
-
-    // =====================================================
-    // BUTTON CONNECTIONS
-    // =====================================================
-
-    connect(
-        ui->btnSearch,
-        &QPushButton::clicked,
-        this,
-        &Dialog::onSearchClicked
-        );
-
-    connect(
-        ui->cmbStatus,
-        QOverload<int>::of(&QComboBox::currentIndexChanged),
-        this,
-        &Dialog::onStatusChanged
-        );
-
-    connect(
-        ui->btnApprove,
-        &QPushButton::clicked,
-        this,
-        &Dialog::onApproveClicked
-        );
-
-    connect(
-        ui->btnDecline,
-        &QPushButton::clicked,
-        this,
-        &Dialog::onDeclineClicked
-        );
-
-    connect(
-        ui->btnViewDetails,
-        &QPushButton::clicked,
-        this,
-        &Dialog::onViewDetailsClicked
-        );
-
-    connect(
-        ui->btnBack,
-        &QPushButton::clicked,
-        this,
-        &Dialog::onBackClicked
-        );
+    refreshData();
+    FigmaUi::install(this);
 }
 
+Dialog::~Dialog() { delete ui; }
 
-// =========================================================
-// DESTRUCTOR
-// =========================================================
-
-Dialog::~Dialog()
+int Dialog::selectedApplicationId() const
 {
-    delete ui;
+    const int row = ui->tblApplications->currentRow();
+    const auto *item = row >= 0 ? ui->tblApplications->item(row,0) : nullptr;
+    return item ? item->data(Qt::UserRole).toInt() : 0;
 }
 
-
-// =========================================================
-// SEARCH APPLICATIONS
-// =========================================================
-
-void Dialog::onSearchClicked()
+bool Dialog::loadData(bool reportError)
 {
-    QString searchID =
-        ui->txtSearchStudentID->text().trimmed();
-
-    QString selectedStatus =
-        ui->cmbStatus->currentText();
-
-
-    for (int row = 0;
-         row < ui->tblApplications->rowCount();
-         ++row)
-    {
-        QString studentID =
-            ui->tblApplications->item(row, 1)->text();
-
-        QString status =
-            ui->tblApplications->item(row, 5)->text();
-
-
-        bool studentMatches = true;
-        bool statusMatches = true;
-
-
-        // Student ID search
-        if (!searchID.isEmpty())
-        {
-            studentMatches =
-                studentID.contains(
-                    searchID,
-                    Qt::CaseInsensitive
-                    );
+    if (!AppSession::isAdmin()) return false;
+    const int previous = selectedApplicationId();
+    ui->tblApplications->setRowCount(0);
+    ui->btnViewDetails->setEnabled(false);
+    ui->btnApprove->setEnabled(false);
+    ui->btnDecline->setEnabled(false);
+    QList<ApplicationRecord> records;
+    const QString status = ui->cmbStatus->currentIndex() > 0 ? ui->cmbStatus->currentText() : QString();
+    if (!Database::applications(records, ui->txtSearchStudentID->text().trimmed(), status)) {
+        ui->lblTitle->setText("Medical Applications - unable to load");
+        if (reportError) QMessageBox::critical(this, "Applications", Database::error());
+        return false;
+    }
+    ui->lblTitle->setText(records.isEmpty() ? "Medical Applications - no matching applications" : "Medical Applications");
+    for (const auto &record : records) {
+        const int row = ui->tblApplications->rowCount();
+        ui->tblApplications->insertRow(row);
+        const QStringList values = {Database::applicationCode(record.id), record.studentId, record.studentName,
+            record.fromDate.toString("dd/MM/yyyy"), record.toDate.toString("dd/MM/yyyy"), record.status};
+        for (int column=0; column<values.size(); ++column) {
+            auto *item = new QTableWidgetItem(values[column]);
+            if (column == 0) item->setData(Qt::UserRole, record.id);
+            ui->tblApplications->setItem(row,column,item);
         }
-
-
-        // Status filter
-        if (selectedStatus != "All")
-        {
-            statusMatches =
-                status.compare(
-                    selectedStatus,
-                    Qt::CaseInsensitive
-                    ) == 0;
-        }
-
-
-        ui->tblApplications->setRowHidden(
-            row,
-            !(studentMatches && statusMatches)
-            );
+        auto *cell = new QWidget(ui->tblApplications);
+        cell->setObjectName(QString("statusCell%1").arg(record.id));
+        cell->setStyleSheet("background: transparent; border: none;");
+        auto *badge = new RoundedStatusBadge(cell);
+        badge->setObjectName("statusBadge");
+        badge->setGeometry(0,25,100,28);
+        badge->setAlignment(Qt::AlignCenter);
+        badge->setStyleSheet("font-family:Inter; font-size:12px; color:white; background:transparent; border:none;");
+        badge->setText(record.status);
+        badge->setProperty("status", record.status);
+        ui->tblApplications->setCellWidget(row,5,cell);
+        if (record.id == previous) ui->tblApplications->selectRow(row);
     }
+    return true;
 }
 
+void Dialog::refreshData() { if (AppSession::isAdmin()) loadData(true); }
+void Dialog::onSearchClicked() { if (AppSession::isAdmin()) refreshData(); }
+void Dialog::onStatusChanged(int index) { Q_UNUSED(index); if (AppSession::isAdmin()) refreshData(); }
+void Dialog::onApproveClicked() { if (AppSession::isAdmin()) reviewSelected("Approved"); }
+void Dialog::onDeclineClicked() { if (AppSession::isAdmin()) reviewSelected("Declined"); }
 
-// =========================================================
-// STATUS FILTER
-// =========================================================
-
-void Dialog::onStatusChanged(int index)
+void Dialog::reviewSelected(const QString &status)
 {
-    Q_UNUSED(index);
-
-    onSearchClicked();
+    if (!AppSession::isAdmin()) return;
+    const int id = selectedApplicationId();
+    if (id <= 0) { QMessageBox::warning(this, "Application", "Select an application first."); return; }
+    ApplicationRecord record;
+    if (!Database::application(id, record)) { const QString error=Database::error(); loadData(false); QMessageBox::critical(this,"Application",error); return; }
+    if (record.status != "Pending") { loadData(false); QMessageBox::information(this,"Application","Only pending applications can be reviewed."); return; }
+    if (QMessageBox::question(this, "Review Application", QString("Mark %1 as %2?").arg(Database::applicationCode(id),status),
+                              QMessageBox::Yes | QMessageBox::No, QMessageBox::No) != QMessageBox::Yes) return;
+    if (!AppSession::isAdmin()) return;
+    const bool saved = Database::reviewApplication(id,status);
+    const QString error = saved ? QString() : Database::error();
+    loadData(false);
+    if (!saved) QMessageBox::critical(this,"Review failed",error);
 }
-
-
-// =========================================================
-// APPROVE APPLICATION
-// =========================================================
-
-void Dialog::onApproveClicked()
-{
-    int row =
-        ui->tblApplications->currentRow();
-
-
-    if (row < 0)
-    {
-        QMessageBox::warning(
-            this,
-            "Approve Application",
-            "Please select an application first."
-            );
-
-        return;
-    }
-
-
-    QString applicationID =
-        ui->tblApplications->item(row, 0)->text();
-
-    QString currentStatus =
-        ui->tblApplications->item(row, 5)->text();
-
-
-    if (currentStatus == "Approved")
-    {
-        QMessageBox::information(
-            this,
-            "Approve Application",
-            "This application is already approved."
-            );
-
-        return;
-    }
-
-
-    QMessageBox::StandardButton reply =
-        QMessageBox::question(
-            this,
-            "Approve Application",
-            "Are you sure you want to approve " +
-                applicationID + "?",
-            QMessageBox::Yes |
-                QMessageBox::No
-            );
-
-
-    if (reply == QMessageBox::Yes)
-    {
-        ui->tblApplications->item(row, 5)
-        ->setText("Approved");
-
-
-        QMessageBox::information(
-            this,
-            "Application Approved",
-            applicationID +
-                " has been approved successfully."
-            );
-
-
-        onSearchClicked();
-    }
-}
-
-
-// =========================================================
-// DECLINE APPLICATION
-// =========================================================
-
-void Dialog::onDeclineClicked()
-{
-    int row =
-        ui->tblApplications->currentRow();
-
-
-    if (row < 0)
-    {
-        QMessageBox::warning(
-            this,
-            "Decline Application",
-            "Please select an application first."
-            );
-
-        return;
-    }
-
-
-    QString applicationID =
-        ui->tblApplications->item(row, 0)->text();
-
-    QString currentStatus =
-        ui->tblApplications->item(row, 5)->text();
-
-
-    if (currentStatus == "Declined")
-    {
-        QMessageBox::information(
-            this,
-            "Decline Application",
-            "This application is already declined."
-            );
-
-        return;
-    }
-
-
-    QMessageBox::StandardButton reply =
-        QMessageBox::question(
-            this,
-            "Decline Application",
-            "Are you sure you want to decline " +
-                applicationID + "?",
-            QMessageBox::Yes |
-                QMessageBox::No
-            );
-
-
-    if (reply == QMessageBox::Yes)
-    {
-        ui->tblApplications->item(row, 5)
-        ->setText("Declined");
-
-
-        QMessageBox::information(
-            this,
-            "Application Declined",
-            applicationID +
-                " has been declined."
-            );
-
-
-        onSearchClicked();
-    }
-}
-
-
-// =========================================================
-// VIEW APPLICATION DETAILS
-// =========================================================
 
 void Dialog::onViewDetailsClicked()
 {
-    int row =
-        ui->tblApplications->currentRow();
-
-
-    if (row < 0)
-    {
-        QMessageBox::warning(
-            this,
-            "View Application",
-            "Please select an application first."
-            );
-
-        return;
-    }
-
-
-    // =====================================================
-    // GET SELECTED APPLICATION DATA
-    // =====================================================
-
-    QString applicationID =
-        ui->tblApplications->item(row, 0)->text();
-
-    QString studentID =
-        ui->tblApplications->item(row, 1)->text();
-
-    QString studentName =
-        ui->tblApplications->item(row, 2)->text();
-
-    QString fromDate =
-        ui->tblApplications->item(row, 3)->text();
-
-    QString toDate =
-        ui->tblApplications->item(row, 4)->text();
-
-    QString status =
-        ui->tblApplications->item(row, 5)->text();
-
-
-    // =====================================================
-    // DEMO MEDICAL INFORMATION
-    // =====================================================
-
-    QString medicalID;
-    QString reason;
-
-    QList<QPair<QString, QString>> courses;
-
-
-    if (applicationID == "APP-001")
-    {
-        medicalID = "249188-26-09-01-04";
-
-        reason = "Medical absence";
-
-
-        courses.append(
-            qMakePair(
-                QString("Physical Chemistry"),
-                QString("NANO 2132")
-                )
-            );
-
-
-        courses.append(
-            qMakePair(
-                QString("Nanomaterials"),
-                QString("NANO 2141")
-                )
-            );
-    }
-
-
-    else if (applicationID == "APP-002")
-    {
-        medicalID = "249172-26-08-05-02";
-
-        reason = "Medical absence";
-
-
-        courses.append(
-            qMakePair(
-                QString("Materials Science"),
-                QString("NANO 2141")
-                )
-            );
-
-
-        courses.append(
-            qMakePair(
-                QString("Nanotechnology"),
-                QString("NANO 2142")
-                )
-            );
-    }
-
-
-    else if (applicationID == "APP-003")
-    {
-        medicalID = "249160-26-07-02-01";
-
-        reason = "Medical absence";
-
-
-        courses.append(
-            qMakePair(
-                QString("Physical Chemistry"),
-                QString("NANO 2132")
-                )
-            );
-    }
-
-
-    // =====================================================
-    // OPEN APPLICATION DETAILS
-    // =====================================================
-
+    if (!AppSession::isAdmin()) return;
+    const int id = selectedApplicationId();
+    if (id <= 0) { QMessageBox::warning(this,"Application","Select an application first."); return; }
     ApplicationDetails details(this);
-
-
-    // =====================================================
-    // RECEIVE STATUS CHANGES
-    // =====================================================
-
-    connect(
-        &details,
-        &ApplicationDetails::statusChanged,
-        this,
-        [this](
-            const QString &applicationID,
-            const QString &newStatus
-            )
-        {
-            for (int row = 0;
-                 row < ui->tblApplications->rowCount();
-                 ++row)
-            {
-                QTableWidgetItem *item =
-                    ui->tblApplications->item(row, 0);
-
-
-                if (item &&
-                    item->text() == applicationID)
-                {
-                    ui->tblApplications
-                        ->item(row, 5)
-                        ->setText(newStatus);
-
-                    break;
-                }
-            }
-        }
-        );
-
-
-    // =====================================================
-    // SEND DATA TO APPLICATION DETAILS
-    // =====================================================
-
-    details.setApplicationData(
-        applicationID,
-        studentID,
-        studentName,
-        medicalID,
-        reason,
-        fromDate,
-        toDate,
-        status,
-        courses
-        );
-
-
-    // Show details window
-    details.exec();
+    connect(&details, &ApplicationDetails::statusChanged, this, [this](const QString &, const QString &) { refreshData(); });
+    if (details.setApplicationId(id)) details.exec();
+    refreshData();
 }
 
-
-// =========================================================
-// BACK
-// =========================================================
-
-void Dialog::onBackClicked()
-{
-    close();
-}
+void Dialog::onBackClicked() { if (AppSession::isAdmin()) close(); }

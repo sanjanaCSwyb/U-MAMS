@@ -1,0 +1,6 @@
+[mysql]
+host=127.0.0.1
+port=3306
+database=umams_db
+user=umams_app
+password=SET_THE_LOCAL_DATABASE_ACCOUNT_PASSWORD

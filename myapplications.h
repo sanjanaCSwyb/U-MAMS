@@ -15,6 +15,9 @@ public:
     explicit MyApplications(QWidget *parent = nullptr);
     ~MyApplications();
 
+public slots:
+    void refreshData();
+
 private slots:
     void onViewDetailsClicked();
     void onBackClicked();

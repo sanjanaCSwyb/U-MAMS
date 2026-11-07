@@ -15,6 +15,9 @@ public:
     explicit StudentDashboard(QWidget *parent = nullptr);
     ~StudentDashboard();
 
+public slots:
+    void refreshData();
+
 private slots:
     void onProfileClicked();
     void onMedicalApplicationClicked();

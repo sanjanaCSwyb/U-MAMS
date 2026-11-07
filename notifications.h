@@ -3,6 +3,8 @@
 
 #include <QDialog>
 
+class QScrollArea;
+
 namespace Ui {
 class Notifications;
 }
@@ -15,11 +17,15 @@ public:
     explicit Notifications(QWidget *parent = nullptr);
     ~Notifications();
 
+public slots:
+    void refreshData();
+
 private slots:
     void onBackClicked();
 
 private:
     Ui::Notifications *ui;
+    QScrollArea *notificationList = nullptr;
 };
 
 #endif // NOTIFICATIONS_H

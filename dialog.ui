@@ -6,195 +6,584 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>839</width>
-    <height>468</height>
+    <width>1200</width>
+    <height>800</height>
    </rect>
   </property>
-  <property name="windowTitle">
-   <string>Dialog</string>
+  <property name="minimumSize">
+   <size>
+    <width>900</width>
+    <height>600</height>
+   </size>
   </property>
-  <widget class="QLabel" name="lblTitle">
+  <property name="windowTitle">
+   <string notr="true">U-MAMS - View Applications</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QDialog#Dialog { background-color: #F7F1E3; }</string>
+  </property>
+  <widget class="QWidget" name="figmaCanvas">
    <property name="geometry">
     <rect>
-     <x>120</x>
-     <y>10</y>
-     <width>191</width>
-     <height>21</height>
+     <x>0</x>
+     <y>0</y>
+     <width>1200</width>
+     <height>800</height>
     </rect>
    </property>
-   <property name="text">
-    <string>U-MAMS - Medical Applications</string>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="txtSearchStudentID">
-   <property name="geometry">
-    <rect>
-     <x>150</x>
-     <y>70</y>
-     <width>113</width>
-     <height>28</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QLabel" name="lblSearchStudentID">
-   <property name="geometry">
-    <rect>
-     <x>20</x>
-     <y>70</y>
-     <width>121</width>
-     <height>21</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Enter Student ID :</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="btnSearch">
-   <property name="geometry">
-    <rect>
-     <x>270</x>
-     <y>70</y>
-     <width>90</width>
-     <height>29</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>SEARCH</string>
-   </property>
-  </widget>
-  <widget class="QTableWidget" name="tblApplications">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>180</y>
-     <width>741</width>
-     <height>181</height>
-    </rect>
-   </property>
-   <property name="columnCount">
-    <number>6</number>
-   </property>
-   <column>
-    <property name="text">
-     <string>Application ID</string>
+   <widget class="QFrame" name="headerFrame">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>1200</width>
+      <height>72</height>
+     </rect>
     </property>
-   </column>
-   <column>
-    <property name="text">
-     <string>Student ID</string>
+    <property name="styleSheet">
+     <string notr="true">background-color: #7A263A; border: none; border-radius: 0px;</string>
     </property>
-   </column>
-   <column>
-    <property name="text">
-     <string>Student Name</string>
+   </widget>
+   <widget class="QFrame" name="sidebarFrame">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>72</y>
+      <width>220</width>
+      <height>728</height>
+     </rect>
     </property>
-   </column>
-   <column>
-    <property name="text">
-     <string>From</string>
+    <property name="styleSheet">
+     <string notr="true">background-color: #7A263A; border: none; border-radius: 0px;</string>
     </property>
-   </column>
-   <column>
-    <property name="text">
-     <string>To</string>
+   </widget>
+   <widget class="QLabel" name="lblUniversityLogo">
+    <property name="geometry">
+     <rect>
+      <x>22</x>
+      <y>16</y>
+      <width>42</width>
+      <height>42</height>
+     </rect>
     </property>
-   </column>
-   <column>
     <property name="text">
-     <string>Status</string>
+     <string notr="true"/>
     </property>
-   </column>
-  </widget>
-  <widget class="QComboBox" name="cmbStatus">
-   <property name="geometry">
-    <rect>
-     <x>120</x>
-     <y>110</y>
-     <width>82</width>
-     <height>28</height>
-    </rect>
-   </property>
-   <item>
+    <property name="styleSheet">
+     <string notr="true">font-family: Inter; font-size: 12px; font-weight: 400; color: #202428; background: transparent; border: none;</string>
+    </property>
+    <property name="pixmap">
+     <pixmap>:/assets/wayamba_logo.png</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblBrand">
+    <property name="geometry">
+     <rect>
+      <x>76</x>
+      <y>14</y>
+      <width>220</width>
+      <height>30</height>
+     </rect>
+    </property>
     <property name="text">
-     <string>All</string>
+     <string notr="true">U-MAMS</string>
     </property>
-   </item>
-   <item>
+    <property name="styleSheet">
+     <string notr="true">font-family: Inter; font-size: 24px; font-weight: 600; color: #D6A21E; background: transparent; border: none;</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblSystemCaption">
+    <property name="geometry">
+     <rect>
+      <x>76</x>
+      <y>44</y>
+      <width>420</width>
+      <height>16</height>
+     </rect>
+    </property>
     <property name="text">
-     <string>Pending</string>
+     <string notr="true">University Medical Absence Management System</string>
     </property>
-   </item>
-   <item>
+    <property name="styleSheet">
+     <string notr="true">font-family: Inter; font-size: 12px; font-weight: 400; color: #F5EBE0; background: transparent; border: none;</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblHeaderTitle">
+    <property name="geometry">
+     <rect>
+      <x>620</x>
+      <y>14</y>
+      <width>430</width>
+      <height>30</height>
+     </rect>
+    </property>
     <property name="text">
-     <string>Approved</string>
+     <string notr="true">View Applications</string>
     </property>
-   </item>
-   <item>
+    <property name="styleSheet">
+     <string notr="true">font-family: Inter; font-size: 22px; font-weight: 600; color: #FFFFFF; background: transparent; border: none;</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblHeaderSubtitle">
+    <property name="geometry">
+     <rect>
+      <x>620</x>
+      <y>44</y>
+      <width>440</width>
+      <height>16</height>
+     </rect>
+    </property>
     <property name="text">
-     <string>Declined</string>
+     <string notr="true">Search and manage submissions</string>
     </property>
-   </item>
-  </widget>
-  <widget class="QLabel" name="lblStatus">
-   <property name="geometry">
-    <rect>
-     <x>20</x>
-     <y>110</y>
-     <width>101</width>
-     <height>21</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Status    :</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="btnBack">
-   <property name="geometry">
-    <rect>
-     <x>320</x>
-     <y>420</y>
-     <width>151</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Back to Dashboard</string>
-   </property>
-  </widget>
-  <widget class="QWidget" name="layoutWidget">
-   <property name="geometry">
-    <rect>
-     <x>30</x>
-     <y>380</y>
-     <width>274</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <layout class="QHBoxLayout" name="horizontalLayout">
+    <property name="styleSheet">
+     <string notr="true">font-family: Inter; font-size: 10px; font-weight: 400; color: #F5EBE0; background: transparent; border: none;</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblHeaderUser">
+    <property name="geometry">
+     <rect>
+      <x>1100</x>
+      <y>24</y>
+      <width>90</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string notr="true">Admin</string>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font-family: Inter; font-size: 14px; font-weight: 400; color: #FFFFFF; background: transparent; border: none;</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="navDashboard">
+    <property name="geometry">
+     <rect>
+      <x>16</x>
+      <y>102</y>
+      <width>188</width>
+      <height>42</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string notr="true">Dashboard</string>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton { font-family: Inter; font-size: 12px; color: #FFFFFF; background: transparent; border: none; text-align: left; padding-left: 16px; } QPushButton:hover { background: #8D2C48; border-radius: 7px; }</string>
+    </property>
+    <property name="figmaNav" stdset="0">
+     <string notr="true">dashboard</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="navMedical">
+    <property name="geometry">
+     <rect>
+      <x>16</x>
+      <y>157</y>
+      <width>188</width>
+      <height>42</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string notr="true">Medical Applications</string>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton { font-family: Inter; font-size: 12px; color: #FFFFFF; background: transparent; border: none; text-align: left; padding-left: 16px; } QPushButton:hover { background: #8D2C48; border-radius: 7px; }</string>
+    </property>
+    <property name="figmaNav" stdset="0">
+     <string notr="true">medical</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="navActiveApplications">
+    <property name="geometry">
+     <rect>
+      <x>16</x>
+      <y>212</y>
+      <width>188</width>
+      <height>42</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string notr="true">View Applications</string>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font-family: Inter; font-size: 12px; color: #2B2520; background-color: #D6A21E; border: none; border-radius: 7px; padding-left: 16px;</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="navReview">
+    <property name="geometry">
+     <rect>
+      <x>16</x>
+      <y>267</y>
+      <width>188</width>
+      <height>42</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string notr="true">Approve / Decline</string>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton { font-family: Inter; font-size: 12px; color: #FFFFFF; background: transparent; border: none; text-align: left; padding-left: 16px; } QPushButton:hover { background: #8D2C48; border-radius: 7px; }</string>
+    </property>
+    <property name="figmaNav" stdset="0">
+     <string notr="true">review</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="navNotifications">
+    <property name="geometry">
+     <rect>
+      <x>16</x>
+      <y>322</y>
+      <width>188</width>
+      <height>42</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string notr="true">Notifications</string>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton { font-family: Inter; font-size: 12px; color: #FFFFFF; background: transparent; border: none; text-align: left; padding-left: 16px; } QPushButton:hover { background: #8D2C48; border-radius: 7px; }</string>
+    </property>
+    <property name="figmaNav" stdset="0">
+     <string notr="true">notifications</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="navReports">
+    <property name="geometry">
+     <rect>
+      <x>16</x>
+      <y>377</y>
+      <width>188</width>
+      <height>42</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string notr="true">Reports</string>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton { font-family: Inter; font-size: 12px; color: #FFFFFF; background: transparent; border: none; text-align: left; padding-left: 16px; } QPushButton:hover { background: #8D2C48; border-radius: 7px; }</string>
+    </property>
+    <property name="figmaNav" stdset="0">
+     <string notr="true">reports</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblTitle">
+    <property name="geometry">
+     <rect>
+      <x>260</x>
+      <y>108</y>
+      <width>800</width>
+      <height>36</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string notr="true">Medical Applications</string>
+    </property>
+    <property name="wordWrap">
+     <bool>false</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font-family: Inter; font-size: 26px; font-weight: 600; color: #7A263A; background: transparent; border: none;</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblSearchStudentID">
+    <property name="geometry">
+     <rect>
+      <x>260</x>
+      <y>152</y>
+      <width>300</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string notr="true">Search by Student ID</string>
+    </property>
+    <property name="wordWrap">
+     <bool>false</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font-family: Inter; font-size: 12px; font-weight: 400; color: #202428; background: transparent; border: none;</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="txtSearchStudentID">
+    <property name="geometry">
+     <rect>
+      <x>260</x>
+      <y>175</y>
+      <width>300</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font-family: Inter; font-size: 14px; color: #25282B; background-color: #FFFDF8; border: 1px solid #DBD1BA; border-radius: 5px; padding: 0px 12px;</string>
+    </property>
+    <property name="placeholderText">
+     <string notr="true">Enter registration number</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblStatus">
+    <property name="geometry">
+     <rect>
+      <x>590</x>
+      <y>152</y>
+      <width>220</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string notr="true">Status</string>
+    </property>
+    <property name="wordWrap">
+     <bool>false</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font-family: Inter; font-size: 12px; font-weight: 400; color: #202428; background: transparent; border: none;</string>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="cmbStatus">
     <item>
-     <widget class="QPushButton" name="btnDecline">
-      <property name="text">
-       <string>Decline</string>
-      </property>
-     </widget>
+     <property name="text">
+      <string>All</string>
+     </property>
     </item>
     <item>
-     <widget class="QPushButton" name="btnViewDetails">
-      <property name="text">
-       <string>View Details</string>
-      </property>
-     </widget>
+     <property name="text">
+      <string>Pending</string>
+     </property>
     </item>
     <item>
-     <widget class="QPushButton" name="btnApprove">
-      <property name="text">
-       <string>Approve</string>
-      </property>
-     </widget>
+     <property name="text">
+      <string>Approved</string>
+     </property>
     </item>
-   </layout>
+    <item>
+     <property name="text">
+      <string>Declined</string>
+     </property>
+    </item>
+    <property name="geometry">
+     <rect>
+      <x>590</x>
+      <y>175</y>
+      <width>220</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QComboBox { font-family: Inter; font-size: 14px; color: #303333; background: #FFFDF8; border: 1px solid #DBD1BA; border-radius: 5px; padding-left: 12px; } QComboBox::drop-down { border: none; width: 0px; } QComboBox QAbstractItemView { font-family: Inter; font-size: 14px; background: #FFFDF8; color: #303333; selection-background-color: #D6A21E; }</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnSearch">
+    <property name="geometry">
+     <rect>
+      <x>830</x>
+      <y>175</y>
+      <width>130</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string notr="true">SEARCH</string>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton { font-family: Inter; font-size: 12px; font-weight: 400; color: #FFFFFF; background-color: #7A263A; border: none; border-radius: 7px; padding: 0px; } QPushButton:hover { border: 1px solid #D6A21E; } QPushButton:pressed { padding-top: 1px; }</string>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+   </widget>
+   <widget class="QTableWidget" name="tblApplications">
+    <property name="columnCount">
+     <number>6</number>
+    </property>
+    <column>
+     <property name="text">
+      <string>Application ID</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Student ID</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Student Name</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>From</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>To</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Status</string>
+     </property>
+    </column>
+    <property name="selectionBehavior">
+     <enum>QAbstractItemView::SelectRows</enum>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>260</x>
+      <y>255</y>
+      <width>870</width>
+      <height>380</height>
+     </rect>
+    </property>
+    <property name="showGrid">
+     <bool>false</bool>
+    </property>
+    <property name="alternatingRowColors">
+     <bool>false</bool>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::NoFrame</enum>
+    </property>
+    <property name="horizontalScrollBarPolicy">
+     <enum>Qt::ScrollBarAlwaysOff</enum>
+    </property>
+    <property name="verticalScrollBarPolicy">
+     <enum>Qt::ScrollBarAsNeeded</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QTableWidget { font-family: Inter; font-size: 12px; color: #303333; background: #FFFDF8; border: 1px solid #DBD1BA; border-radius: 6px; gridline-color: transparent; selection-background-color: #F2E8D4; selection-color: #303333; } QTableWidget::item { border: none; padding: 0px 20px; } QHeaderView { background: #FFFDF8; } QHeaderView::section { font-family: Inter; font-size: 12px; font-weight: 400; color: #202428; background: #FFFDF8; border: none; padding: 12px 20px; text-align: left; } QTableCornerButton::section { background: #FFFDF8; border: none; }</string>
+    </property>
+    <attribute name="verticalHeaderVisible">
+     <bool>false</bool>
+    </attribute>
+    <attribute name="horizontalHeaderVisible">
+     <bool>true</bool>
+    </attribute>
+    <attribute name="verticalHeaderDefaultSectionSize">
+     <number>78</number>
+    </attribute>
+    <attribute name="horizontalHeaderDefaultSectionSize">
+     <number>160</number>
+    </attribute>
+   </widget>
+   <widget class="QWidget" name="layoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>280</x>
+      <y>665</y>
+      <width>450</width>
+      <height>44</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnViewDetails">
+    <property name="geometry">
+     <rect>
+      <x>280</x>
+      <y>665</y>
+      <width>150</width>
+      <height>44</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string notr="true">VIEW DETAILS</string>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton { font-family: Inter; font-size: 12px; font-weight: 400; color: #FFFFFF; background-color: #7A263A; border: none; border-radius: 7px; padding: 0px; } QPushButton:hover { border: 1px solid #D6A21E; } QPushButton:pressed { padding-top: 1px; }</string>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnApprove">
+    <property name="geometry">
+     <rect>
+      <x>450</x>
+      <y>665</y>
+      <width>130</width>
+      <height>44</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string notr="true">APPROVE</string>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton { font-family: Inter; font-size: 12px; font-weight: 400; color: #FFFFFF; background-color: #287A52; border: none; border-radius: 7px; padding: 0px; } QPushButton:hover { border: 1px solid #D6A21E; } QPushButton:pressed { padding-top: 1px; }</string>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnDecline">
+    <property name="geometry">
+     <rect>
+      <x>600</x>
+      <y>665</y>
+      <width>130</width>
+      <height>44</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string notr="true">DECLINE</string>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton { font-family: Inter; font-size: 12px; font-weight: 400; color: #FFFFFF; background-color: #7A263A; border: none; border-radius: 7px; padding: 0px; } QPushButton:hover { border: 1px solid #D6A21E; } QPushButton:pressed { padding-top: 1px; }</string>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnBack">
+    <property name="geometry">
+     <rect>
+      <x>930</x>
+      <y>665</y>
+      <width>200</width>
+      <height>44</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string notr="true">BACK TO DASHBOARD</string>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton { font-family: Inter; font-size: 12px; font-weight: 400; color: #FFFFFF; background-color: #7A263A; border: none; border-radius: 7px; padding: 0px; } QPushButton:hover { border: 1px solid #D6A21E; } QPushButton:pressed { padding-top: 1px; }</string>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+   </widget>
   </widget>
  </widget>
  <resources/>
+ <tabstops>
+  <tabstop>txtSearchStudentID</tabstop>
+  <tabstop>cmbStatus</tabstop>
+  <tabstop>btnSearch</tabstop>
+  <tabstop>tblApplications</tabstop>
+  <tabstop>btnViewDetails</tabstop>
+  <tabstop>btnApprove</tabstop>
+  <tabstop>btnDecline</tabstop>
+  <tabstop>btnBack</tabstop>
+ </tabstops>
  <connections/>
 </ui>

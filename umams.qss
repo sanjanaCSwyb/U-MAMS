@@ -1,0 +1,75 @@
+/* Exact screen styles are stored with the native widgets in each .ui file. */
+QToolTip { font-family: Inter; font-size: 12px; color: #333333; background: #FFFDF8; border: 1px solid #DDD7C8; padding: 5px; }
+
+/*
+   Canonical popup theme. The application popup policy also applies this
+   stylesheet directly to each QMessageBox, above parent-window inline styles.
+*/
+QMessageBox {
+    background-color: #F7F1E3;
+    color: #263238;
+    font-family: Inter;
+    font-size: 14px;
+}
+QMessageBox QLabel, QMessageBox QCheckBox {
+    color: #263238;
+    background-color: transparent;
+    border: none;
+    font-family: Inter;
+    font-size: 14px;
+}
+QMessageBox QDialogButtonBox {
+    background-color: transparent;
+    border: none;
+}
+QMessageBox QPushButton {
+    color: #FFFDF8;
+    background-color: #7A263A;
+    border: 2px solid #7A263A;
+    border-radius: 7px;
+    padding: 8px 18px;
+    min-width: 76px;
+    min-height: 20px;
+    font-family: Inter;
+    font-size: 14px;
+    font-weight: 500;
+}
+QMessageBox QPushButton:default {
+    color: #FFFDF8;
+    background-color: #7A263A;
+    border-color: #D6A21E;
+    font-weight: 600;
+}
+QMessageBox QPushButton:hover {
+    color: #FFFDF8;
+    background-color: #922F48;
+    border-color: #D6A21E;
+}
+QMessageBox QPushButton:focus {
+    color: #FFFDF8;
+    border-color: #D6A21E;
+}
+QMessageBox QPushButton:pressed {
+    color: #FFFDF8;
+    background-color: #5B1929;
+    border-color: #D6A21E;
+    padding-top: 9px;
+    padding-bottom: 7px;
+}
+QMessageBox QPushButton:disabled {
+    color: #61584A;
+    background-color: #E6DED0;
+    border-color: #C7BDAA;
+    font-weight: 500;
+}
+QMessageBox QTextEdit, QMessageBox QPlainTextEdit {
+    color: #263238;
+    background-color: #FFFDF8;
+    border: 1px solid #DBD1BA;
+    border-radius: 5px;
+    padding: 8px;
+    selection-color: #FFFDF8;
+    selection-background-color: #7A263A;
+    font-family: Inter;
+    font-size: 13px;
+}
